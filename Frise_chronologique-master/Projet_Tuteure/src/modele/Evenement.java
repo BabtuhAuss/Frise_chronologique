@@ -1,6 +1,6 @@
 package modele;
 
-public class Evenement {
+public class Evenement implements Comparable <Evenement> {
 
 	private Date date;
 	private int poid;
@@ -14,14 +14,20 @@ public class Evenement {
 		this.poid = poid;
 	}
 	
+	public int compareTo(Evenement evt){
+		if(poid < evt.poid)
+			return -1;
+		else if(poid > evt.poid)
+			return 1;
+		else
+			return 0;
+	}
+	
 	public String toString(){
 		return "Titre :"+ titre+"\nDescription :"+description+"\n à la date:"+date+"\nPoid :"+poid;
 	}
 
 	public Evenement getEvt(){
 		return this;
-	}
-	public int getPoid(){
-		return this.poid;
 	}
 }
