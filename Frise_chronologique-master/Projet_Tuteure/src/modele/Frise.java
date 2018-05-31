@@ -11,13 +11,16 @@ public class Frise {
 	private HashMap <Integer, TreeSet<Evenement> > Hash_evt;
 	//ce String est le nom de la frise qui est donné en parametre dans le constructeur.
 	private String intituler;
-	
-	public Frise(String parIntitule) {
+	int anneeDebut;
+	int anneeFin;
+	public Frise(String parIntitule, int parAnneeDebut, int parAnneeFin) {
 		Hash_evt = new HashMap <Integer, TreeSet<Evenement>>();
 		intituler = parIntitule;
+		anneeDebut = parAnneeDebut;
+		anneeFin = parAnneeFin;
 	}
 	
-	public void ajout(Evenement parEvt) {
+	public void ajout(Evenement parEvt){
 		
 		Date date = parEvt.getDate();
 		int annee_evt = date.getAnnee();

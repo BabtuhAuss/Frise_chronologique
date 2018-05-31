@@ -15,6 +15,12 @@ public class Date {
 		GregorianCalendar date = new GregorianCalendar (annee,mois-1,jour);			
 	  }
 	
+	  public Date ()   { 
+		  GregorianCalendar dateAuj = new GregorianCalendar ();
+		  annee = dateAuj.get (Calendar.YEAR);
+		  mois = dateAuj.get (Calendar.MONTH)+1; // janvier = 0, fevrier = 1...
+		  jour = dateAuj.get (Calendar.DAY_OF_MONTH);
+	  }
 	public String toString () {
 	    String chaine = new String();
 		chaine =jour + " ";

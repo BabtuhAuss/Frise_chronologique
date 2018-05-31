@@ -8,6 +8,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controleur.Controleur;
+import modele.Date;
+import modele.Evenement;
+import modele.Frise;
 
 
 @SuppressWarnings("serial")
@@ -16,6 +19,19 @@ public class PanelFils extends JPanel implements ActionListener {
 	CardLayout gestionnaireDeCartes;
 	
 	public PanelFils(){
+		
+		Frise maFrise = new Frise("la vie de baptiste", 2000, 2018);
+		
+		Evenement evt1 = new Evenement(new Date(), "titre", "description", 2);
+		Evenement evt2 = new Evenement(new Date(5,8,2018),"titre2","description2",1);
+		
+		maFrise.ajout(evt1);
+		maFrise.ajout(evt2);
+		
+		System.out.println(maFrise.getEvenementAnnee(2018));
+		
+		
+		
 		gestionnaireDeCartes = new CardLayout(5,5);
 		this.setLayout(gestionnaireDeCartes);
 		
