@@ -20,7 +20,7 @@ public class PanelFils extends JPanel implements ActionListener {
 	
 	public PanelFils(){
 		
-		Frise maFrise = new Frise("la vie de baptiste", 2000, 2018);
+		Frise maFrise = new Frise("la vie de baptiste", 2000, 2018, 5);
 		
 		Evenement evt1 = new Evenement(new Date(), "titre", "description", 2);
 		Evenement evt2 = new Evenement(new Date(5,8,2018),"titre2","description2",1);
@@ -38,7 +38,7 @@ public class PanelFils extends JPanel implements ActionListener {
 		PanelCreation creation = new PanelCreation();
 		this.add(creation, intitule_cartes[0]);
 		
-		PanelAffichage affichage = new PanelAffichage();
+		PanelAffichage affichage = new PanelAffichage(maFrise);
 		this.add(affichage, intitule_cartes[1]);
 		gestionnaireDeCartes.show(this, intitule_cartes[0]);
 

@@ -7,34 +7,49 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModeleTable extends DefaultTableModel{
 	
-	public ModeleTable(Date parDate){
+	
+	private String val_annee[];
+	
+	
+	public ModeleTable(int periode, Frise parFrise){
 		
-		this.setColumnCount(7);
-		this.setRowCount(15);
-		String [] abrJour = {"lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"};
+		int duree_frise = parFrise.getAnneeFin()-parFrise.getAnneeDebut();
 		
+		this.setColumnCount(duree_frise);
+		this.setRowCount(4);
+		val_annee= new String[duree_frise];
 		
-		
-		this.setColumnIdentifiers(abrJour); 
-		//Les evenements de la semaine 
-	/*	Collection <Evenement> evtsSemaine=parAgenda.getEvenementSemaine(parDate); // A check
-		
-		if (evtsSemaine != null){
-			for (Evenement evt : evtsSemaine){
-				ajoutEvenement(evt); // 
+		for(int i = 0; parFrise.getAnneeDebut()+i < parFrise.getAnneeFin(); i++) {
+			if(i%periode==0) {
+				val_annee[i] = "" + (parFrise.getAnneeDebut()+i);
 			}
-		}*/
+			else {
+				val_annee[i] = " ";
+			}
+	
+		}
+		this.setColumnIdentifiers(val_annee); 
+		//Ajout des evenements dans la table
+		for(int i = 0; i<val_annee.length; i++) {
+			Collection <Evenement> evtsAnnee = parFrise.getEvenementAnnee(parFrise.getAnneeDebut()+i);
+			if (evtsAnnee != null) {
+				for(Evenement evt : evtsAnnee)
+					ajoutEvenement(evt, i);	
+			}
+					
+		}
+
 	}//constructeur
 
 	
 	
-	public void ajoutEvenement(Evenement parEvt) {
-		int indiceColonne = 2;
+	public void ajoutEvenement(Evenement evt, int i) {
+		int indiceColonne = i;
 		int indiceLigne = 0;
-		while (indiceLigne<15 && getValueAt(indiceLigne, indiceColonne)!= null){
+		while (indiceLigne<5 && getValueAt(indiceLigne, indiceColonne)!= null){
 			indiceLigne++;
 		}
-		setValueAt(parEvt,indiceLigne, indiceColonne);
+		setValueAt(evt,indiceLigne, indiceColonne);
 	}//ajoutEvenement
 	
 	public Class getColumnClass(int indice){

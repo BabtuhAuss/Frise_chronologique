@@ -4,6 +4,7 @@ package vue;
 
 
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,14 +17,18 @@ public class PanelTableFrise extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	ModeleTable modele;
-	JTable tableSemaine;
+	JTable tableAnneeEvt;
 	Date today;
-	public PanelTableFrise(){
-		today = new Date(30,05,2018);
-		modele = new ModeleTable(today);
-		tableSemaine = new JTable(modele);
-		tableSemaine.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		tableSemaine.addMouseListener(new MouseAdapter(){
+	Frise frise;
+	
+	public PanelTableFrise(Frise parFrise){
+		frise = parFrise;
+		modele = new ModeleTable(frise.getPeriode(), frise);
+		
+		tableAnneeEvt = new JTable(modele);
+		
+		tableAnneeEvt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+	/*	tableAnneeEvt.addMouseListener(new MouseAdapter(){
 		
 			public void mouseClicked(MouseEvent evt){
 				JTable table = (JTable)evt.getSource();
@@ -31,12 +36,15 @@ public class PanelTableFrise extends JPanel {
 				Point point= evt.getPoint();
 				int rowIndex = table.rowAtPoint(point);
 				int colIndex = table.columnAtPoint(point);
-				JOptionPane.showMessageDialog(tableSemaine, modele.getValueAt(rowIndex, colIndex));
+				JOptionPane.showMessageDialog(tableAnneeEvt, modele.getValueAt(rowIndex, colIndex));
 			}
 
-		});
-		tableSemaine.setDefaultRenderer(Evenement.class, new CelluleRenderer());
-		JScrollPane scroll = new JScrollPane(tableSemaine, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED );
+		});*/
+		//tableAnneeEvt.setDefaultRenderer(Evenement.class, new CelluleRenderer());
+		JScrollPane scroll = new JScrollPane(tableAnneeEvt, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED );
+
+		scroll.getVerticalScrollBar().setPreferredSize(new Dimension(10, 0));
+		scroll.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 50));
 		
 		this.add(scroll);
 		

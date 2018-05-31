@@ -5,14 +5,17 @@ import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import modele.Frise;
+
 public class PanelAffichage extends JPanel {
 	
-	String intitule[] = {"s0", "s1","s2","s3","s4"};
-	public PanelAffichage(){
+	public PanelAffichage(Frise parFrise){
+		
+		
 		this.setLayout(new BorderLayout(20,20));
-		JLabel intituleFrise = new JLabel(intitule[0]);
+		JLabel intituleFrise = new JLabel(parFrise.toString());
 		JPanel diapoEvent = new JPanel();
-		PanelTableFrise frise = new PanelTableFrise();
+		PanelTableFrise frise = new PanelTableFrise(parFrise);
 		
 		
 		
