@@ -30,4 +30,8 @@ public class Evenement implements Comparable <Evenement> {
 	public Evenement getEvt(){
 		return this;
 	}
+
+	public Date getDate() {
+		return date;
+	}
 }
