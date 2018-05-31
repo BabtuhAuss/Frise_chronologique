@@ -12,7 +12,7 @@ import controleur.Controleur;
 
 @SuppressWarnings("serial")
 public class PanelFils extends JPanel implements ActionListener {
-	String[] intitule_cartes = {"Calendrier","Formulaire","AgendaSemaine"};
+	String[] intitule_cartes = {"Creation","Affichage","?"};
 	CardLayout gestionnaireDeCartes;
 	
 	public PanelFils(){
@@ -24,7 +24,8 @@ public class PanelFils extends JPanel implements ActionListener {
 		
 		PanelAffichage affichage = new PanelAffichage();
 		this.add(affichage, intitule_cartes[1]);
-		
+		gestionnaireDeCartes.show(this, intitule_cartes[0]);
+
 		Controleur controleur = new Controleur(creation, affichage);
 	}
 

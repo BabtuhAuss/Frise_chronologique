@@ -6,7 +6,9 @@ import modele.*;
 import javax.swing.table.DefaultTableModel;
 
 public class ModeleTable extends DefaultTableModel{
+	
 	public ModeleTable(Date parDate){
+		
 		this.setColumnCount(7);
 		this.setRowCount(15);
 		String [] abrJour = {"lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"};

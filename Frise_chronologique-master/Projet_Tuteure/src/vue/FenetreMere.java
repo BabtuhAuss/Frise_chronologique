@@ -6,9 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-@SuppressWarnings("serial")
-public class FenetreMere extends JFrame{
 
+public class FenetreMere extends JFrame{
+	
 	public FenetreMere (String parTitre){
 		super(parTitre);
 		PanelFils contentPane = new PanelFils();
@@ -18,11 +18,11 @@ public class FenetreMere extends JFrame{
 		this.setJMenuBar(menuBar);
 		
 		//ajout d'un item à la barre des menus
-		JMenuItem interfaceCreation = new JMenuItem("Création d'Évenement");
+		JMenuItem interfaceCreation = new JMenuItem("Creation");
 		interfaceCreation.addActionListener(contentPane);
 		interfaceCreation.setActionCommand("Creation");
 		
-		JMenuItem interfaceAffichage = new JMenuItem("Affichage Frise");
+		JMenuItem interfaceAffichage = new JMenuItem("Affichage");
 		interfaceAffichage.addActionListener(contentPane);
 		interfaceAffichage.setActionCommand("Affichage");
 		
@@ -40,6 +40,7 @@ public class FenetreMere extends JFrame{
 		menuBar.add(itemFermer);
 		
 		setContentPane(contentPane);
+		
 		contentPane.setBackground(new Color(255,255,255));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(800,600);

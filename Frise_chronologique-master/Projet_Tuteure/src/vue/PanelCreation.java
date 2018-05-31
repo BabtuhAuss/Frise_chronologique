@@ -23,6 +23,7 @@ public class PanelCreation extends JPanel{
 	JLabel labelPoid = new JLabel("Poid");
 	JTextField fieldPoid= new JTextField(10);
 	JComboBox choixPoid;
+	
 	public PanelCreation(){
 		choixPoid = new JComboBox(choix_poid);
 		setLayout (new GridBagLayout());
