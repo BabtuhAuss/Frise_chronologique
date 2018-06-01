@@ -28,6 +28,7 @@ public class PanelTableFrise extends JPanel {
 		tableAnneeEvt = new JTable(modele);
 		
 		tableAnneeEvt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
 	/*	tableAnneeEvt.addMouseListener(new MouseAdapter(){
 		
 			public void mouseClicked(MouseEvent evt){
@@ -43,11 +44,17 @@ public class PanelTableFrise extends JPanel {
 		//tableAnneeEvt.setDefaultRenderer(Evenement.class, new CelluleRenderer());
 		JScrollPane scroll = new JScrollPane(tableAnneeEvt, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED );
 
-		scroll.getVerticalScrollBar().setPreferredSize(new Dimension(10, 0));
-		scroll.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 50));
+		//scroll.getVerticalScrollBar().setPreferredSize(new Dimension(10, 0));
+		//scroll.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 50));
+		
+		
+		scroll.setPreferredSize(new Dimension(1000,450));
+		
+		
 		
 		this.add(scroll);
 		
+		tableAnneeEvt.setRowHeight(100);
 		
 		
 	}

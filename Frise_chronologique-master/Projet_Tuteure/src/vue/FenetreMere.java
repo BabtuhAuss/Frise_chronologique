@@ -43,7 +43,7 @@ public class FenetreMere extends JFrame{
 		
 		contentPane.setBackground(new Color(255,255,255));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(800,600);
+		setSize(1200,800);
 		setVisible(true);
 		setLocation(200,300);
 		

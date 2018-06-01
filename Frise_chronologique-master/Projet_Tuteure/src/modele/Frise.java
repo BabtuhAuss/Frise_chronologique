@@ -73,6 +73,7 @@ public class Frise {
 		if(Hash_evt.containsKey(annee_evt)) {
 			Hash_evt.get(annee_evt).add(parEvt);
 		}
+		
 		else {
 			TreeSet <Evenement> liste = new TreeSet <Evenement>();
 			liste.add(parEvt);
@@ -81,17 +82,18 @@ public class Frise {
 	}
 	
 	public String toString() {
-		return "nom de la frise : "+intituler;
+		return intituler;
 	}
 
+	
+	public HashMap<Integer, TreeSet<Evenement>> getEvenements(){
+		System.out.println(Hash_evt.get(2018));
+		return Hash_evt;
+		
+	}
 	
 	public Collection<Evenement> getEvenementAnnee(int numAnnee) {
 		return Hash_evt.get(numAnnee);
 	}
 	
-	
-	public Collection<Evenement> getEvenementSemaine(Date date) {
-		int numSemaine = date.getAnnee();
-		return Hash_evt.get(numSemaine);
-	}
 }

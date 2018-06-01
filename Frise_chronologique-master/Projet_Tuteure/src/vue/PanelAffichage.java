@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import modele.Frise;
 
@@ -13,10 +14,14 @@ public class PanelAffichage extends JPanel {
 		
 		
 		this.setLayout(new BorderLayout(20,20));
-		JLabel intituleFrise = new JLabel(parFrise.toString());
+		
+		JLabel intituleFrise = new JLabel("<html><h1>"+parFrise.toString()+ "</h1></html>");
+		intituleFrise.setLocation(100, 200);
 		JPanel diapoEvent = new JPanel();
 		PanelTableFrise frise = new PanelTableFrise(parFrise);
 		
+		intituleFrise.setHorizontalAlignment(SwingConstants.CENTER);
+		intituleFrise.setVerticalAlignment(SwingConstants.CENTER);
 		
 		
 		

@@ -20,16 +20,17 @@ public class PanelFils extends JPanel implements ActionListener {
 	
 	public PanelFils(){
 		
-		Frise maFrise = new Frise("la vie de baptiste", 2000, 2018, 5);
+		Frise maFrise = new Frise("la vie de baptiste", 2000, 2020, 5);
 		
 		Evenement evt1 = new Evenement(new Date(), "titre", "description", 2);
-		Evenement evt2 = new Evenement(new Date(5,8,2018),"titre2","description2",1);
+		Evenement evt2 = new Evenement(new Date(5,8,2005),"titre2","description2",1);
+		Evenement evt3 = new Evenement(new Date(5,7,2005),"titre2","description2",4);
+		Evenement evt4 = new Evenement(new Date(5,6,2005),"titre2","description2",3);
 		
 		maFrise.ajout(evt1);
 		maFrise.ajout(evt2);
-		
-		System.out.println(maFrise.getEvenementAnnee(2018));
-		
+		maFrise.ajout(evt3);
+		maFrise.ajout(evt4);
 		
 		
 		gestionnaireDeCartes = new CardLayout(5,5);
