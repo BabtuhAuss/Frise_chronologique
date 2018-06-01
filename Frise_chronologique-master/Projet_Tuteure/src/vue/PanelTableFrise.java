@@ -51,7 +51,6 @@ public class PanelTableFrise extends JPanel {
 		scroll.setPreferredSize(new Dimension(1000,450));
 		
 		
-		
 		this.add(scroll);
 		
 		tableAnneeEvt.setRowHeight(100);

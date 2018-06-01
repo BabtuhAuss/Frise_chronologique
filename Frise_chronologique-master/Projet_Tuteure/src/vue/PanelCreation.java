@@ -24,6 +24,9 @@ public class PanelCreation extends JPanel{
 	JTextField fieldPoid= new JTextField(10);
 	JComboBox choixPoid;
 	
+	
+	JTextField fieldImage =  new JTextField(10);
+	
 	public PanelCreation(){
 		choixPoid = new JComboBox(choix_poid);
 		setLayout (new GridBagLayout());
@@ -96,7 +99,7 @@ public class PanelCreation extends JPanel{
 	}
 	
 	public Evenement getEvenement(){
-		return new Evenement(getDate(),fieldTitre.getText(),fieldLieu.getText(), 0);
+		return new Evenement(getDate(),fieldTitre.getText(),fieldLieu.getText(), 0, fieldImage.getText());
 	}
 	public Date getDate(){
 		return	dateFormulaire;
