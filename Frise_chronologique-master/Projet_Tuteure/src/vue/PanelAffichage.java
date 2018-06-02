@@ -16,6 +16,10 @@ import javax.swing.SwingConstants;
 
 import modele.*;
 
+
+/** Ce panel est la deuxième Frame importante, qui affiche les informations de la frise et qui possède donc le nom de la frise, la table et le diapo
+ * 
+ */
 public class PanelAffichage extends JPanel {
 	
 	
@@ -86,6 +90,10 @@ public class PanelAffichage extends JPanel {
 				
 			}
 
+			/** permet d'actualiser et de dynamiser l'affichage
+			 * 
+			 * @param evt : l'evenement que l'on va afficher sur le diapo
+			 */
 			private void setDiapo(Evenement evt) {
 				labelDescription.setText(	"<html>"+ "<h1>"+evt.getTitre()+"</h1>"+"<h2>-- Le : "+evt.getDate()+"</h2></br></br>"+"<i>"+evt.getDescription()+"</i>"+"</html>");
 				ImageIcon icon_modiv;
@@ -121,18 +129,13 @@ public class PanelAffichage extends JPanel {
 	
 		/*FIN DE LA TABLE*/
 		
-		
-		
 
-		
-		
+		//ajout des trois panels dans la classe PanelAffichage
 		this.add(intituleFrise, BorderLayout.NORTH);
 		this.add(diapoEvent, BorderLayout.CENTER);
 		this.add(panelTableFrise, BorderLayout.SOUTH);
 		
 		
-	}
+	}//fin du constructeur
 	
-
-
 }

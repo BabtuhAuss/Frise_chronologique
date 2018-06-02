@@ -5,14 +5,23 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-public class Controleur implements ActionListener{
+import vue.*;
+import modele.*;
 
-	public Controleur(JPanel creation, JPanel affichage) {
+public class Controleur implements ActionListener{
+	Frise frise;
+	PanelCreation panelCreation;
+	PanelAffichage panelAffichage;
+	/** Constructeur
+	 * 
+	 * @param creation
+	 * @param affichage
+	 */
+	public Controleur(Frise parFrise, PanelCreation parCreation, PanelAffichage parAffichage) {
 		
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 

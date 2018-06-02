@@ -43,7 +43,7 @@ public class PanelFils extends JPanel implements ActionListener {
 		this.add(affichage, intitule_cartes[1]);
 		gestionnaireDeCartes.show(this, intitule_cartes[0]);
 
-		Controleur controleur = new Controleur(creation, affichage);
+		Controleur controleur = new Controleur(maFrise, creation, affichage);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
