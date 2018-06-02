@@ -6,79 +6,12 @@ public class Evenement implements Comparable <Evenement> {
 	private int poid;
 	private String titre;
 	private String description;
-	private String nom_image;
 	
-	/**
-	 * @return the nom_image
-	 */
-	public String getNom_image() {
-		return nom_image;
-	}
-
-	/**
-	 * @param nom_image the nom_image to set
-	 */
-	public void setNom_image(String nom_image) {
-		this.nom_image = nom_image;
-	}
-
-	/**
-	 * @return the poid
-	 */
-	public int getPoid() {
-		return poid;
-	}
-
-	/**
-	 * @param poid the poid to set
-	 */
-	public void setPoid(int poid) {
-		this.poid = poid;
-	}
-
-	/**
-	 * @return the titre
-	 */
-	public String getTitre() {
-		return titre;
-	}
-
-	/**
-	 * @param titre the titre to set
-	 */
-	public void setTitre(String titre) {
-		this.titre = titre;
-	}
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	/**
-	 * @param date the date to set
-	 */
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	
-	
-	public Evenement(Date date, String titre, String description, int poid, String photo) {
+	public Evenement(Date date, String titre, String description, int poid) {
 		this.date = date;
 		this.titre = titre;
 		this.description = description;
 		this.poid = poid;
-		this.nom_image = photo;
 	}
 	
 	public int compareTo(Evenement evt){
@@ -91,16 +24,10 @@ public class Evenement implements Comparable <Evenement> {
 	}
 	
 	public String toString(){
-		return titre;
+		return "Titre :"+ titre+"\nDescription :"+description+"\n à la date:"+date+"\nPoid :"+poid;
 	}
 
 	public Evenement getEvt(){
 		return this;
 	}
-
-	public Date getDate() {
-		return date;
-	}
-	
-	
 }

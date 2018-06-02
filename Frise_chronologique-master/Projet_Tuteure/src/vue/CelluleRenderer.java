@@ -10,7 +10,9 @@ import javax.swing.table.TableCellRenderer;
 
 import modele.Evenement;
 
-
+/* 
+ * C'est une classe qui va permettre de rendre plus attrayant la table
+ */
 public class CelluleRenderer extends JLabel implements TableCellRenderer{
 
 	public CelluleRenderer() {
