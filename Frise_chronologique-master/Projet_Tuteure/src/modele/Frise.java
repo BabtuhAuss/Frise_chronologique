@@ -1,5 +1,6 @@
 package modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -7,10 +8,14 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.TreeSet;
 
-public class Frise {
+public class Frise implements Serializable {
 	
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//besoin d'un hash map pour trier en fonction d'une annÃ©e
 	private HashMap <Integer, TreeSet<Evenement> > Hash_evt;
 	//ce String est le nom de la frise qui est donné en parametre dans le constructeur.

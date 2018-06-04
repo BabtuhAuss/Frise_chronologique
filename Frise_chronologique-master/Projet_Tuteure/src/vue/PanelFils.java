@@ -3,6 +3,9 @@ package vue;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -11,6 +14,7 @@ import controleur.Controleur;
 import modele.Date;
 import modele.Evenement;
 import modele.Frise;
+import modele.LectureEcriture;
 
 
 @SuppressWarnings("serial")
@@ -31,6 +35,18 @@ public class PanelFils extends JPanel implements ActionListener {
 		maFrise.ajout(evt2);
 		maFrise.ajout(evt3);
 		maFrise.ajout(evt4);
+		
+		File monFichier = new File("Frises" + File.separator + "frise_1.ser");
+		
+		if (monFichier.length() != 0) {
+			try {
+				maFrise = (Frise) LectureEcriture.lecture(monFichier);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		gestionnaireDeCartes = new CardLayout(5,5);

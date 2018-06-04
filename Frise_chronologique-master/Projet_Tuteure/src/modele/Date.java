@@ -1,9 +1,14 @@
 package modele;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Date {
+public class Date implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int jour;
 	private int mois;
 	private int annee;

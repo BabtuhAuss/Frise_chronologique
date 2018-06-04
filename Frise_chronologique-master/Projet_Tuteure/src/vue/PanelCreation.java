@@ -75,7 +75,7 @@ public class PanelCreation extends JPanel{
 		contrainte.gridx=7 ; contrainte.gridy=0 ;
 		contrainte.gridwidth=4;
 		add(boutonAjout, contrainte);
-		
+		boutonAjout.setActionCommand(NOM_BOUTON);
 		
 		
 		//deusiemme ligne (marche un peut)
@@ -135,8 +135,10 @@ public class PanelCreation extends JPanel{
 			
 	}
 	
+
+	
 	public Evenement getEvenement(){
-		return new Evenement(getDate(),fieldTitre.getText(),area.getText(), 0);
+		return new Evenement(getDate(),fieldTitre.getText(),area.getText(), 0, "image_vide.jpg");
 	}
 	public Date getDate(){
 		return	dateFormulaire;

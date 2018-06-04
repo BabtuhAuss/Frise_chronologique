@@ -26,6 +26,10 @@ public class FenetreMere extends JFrame{
 		interfaceAffichage.addActionListener(contentPane);
 		interfaceAffichage.setActionCommand("Affichage");
 		
+		JMenuItem menuFrise = new JMenuItem("Ouvrir...");
+		menuFrise.addActionListener(contentPane);
+		menuFrise.setActionCommand("Ouvrir");
+		
 		JMenuItem popUpAboutUs = new JMenuItem("?");
 		popUpAboutUs.addActionListener(contentPane);
 		popUpAboutUs.setActionCommand("?");
@@ -37,6 +41,7 @@ public class FenetreMere extends JFrame{
 		menuBar.add(interfaceCreation);
 		menuBar.add(interfaceAffichage);
 		menuBar.add(popUpAboutUs);
+		menuBar.add(menuFrise);
 		menuBar.add(itemFermer);
 		
 		setContentPane(contentPane);

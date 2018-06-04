@@ -137,5 +137,11 @@ public class PanelAffichage extends JPanel {
 		
 		
 	}//fin du constructeur
+
+
+
+	public void setFrise(Frise frise2) {
+		tableAnneeEvt.setModel(new ModeleTable(frise2.getPeriode(), frise2));		
+	}
 	
 }
