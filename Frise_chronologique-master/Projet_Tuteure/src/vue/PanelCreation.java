@@ -25,7 +25,7 @@ public class PanelCreation extends JPanel{
 	String choix_jour[] = new String [31];
 	String choix_mois[] = new String [12];
 	String choix_annee[]= new String[totaleAnnee];
-	String choix_poid[] = {"1","2","3","4","5"};
+	String choix_poid[] = {"1","2","3","4"};
 	JLabel labelPoid = new JLabel("Poid");
 	JComboBox choixPoid;
 	JComboBox choixJour;
