@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Frise implements Serializable {
@@ -91,9 +93,19 @@ public class Frise implements Serializable {
 	}
 
 	
-	public HashMap<Integer, TreeSet<Evenement>> getEvenements(){
-		System.out.println(Hash_evt.get(2018));
-		return Hash_evt;
+	public ArrayList <Evenement> getEvenements(){
+		Collection<TreeSet<Evenement>> evts ;
+		evts = Hash_evt.values();
+		ArrayList<Evenement> e = new ArrayList<Evenement>();
+		
+		for(TreeSet ev : evts) {
+			Iterator iter = ev.iterator();
+			while(iter.hasNext()){
+				e.add((Evenement) iter.next());
+			}
+		}
+		
+		return e;
 		
 	}
 	

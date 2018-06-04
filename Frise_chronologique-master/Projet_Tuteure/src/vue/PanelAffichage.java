@@ -4,8 +4,10 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
+import controleur.Controleur;
 import modele.*;
 
 
@@ -26,16 +29,27 @@ public class PanelAffichage extends JPanel {
 	/*champs de la table */
 	private ModeleTable modele;
 	private JTable tableAnneeEvt;
+	
 	private Date today;
 	private Frise frise;
-
+	
+	
+	private String labelBouton[]={"<",">"};
+	private JButton bouton[]= new JButton[2];
+	
 	private JLabel labelImg;
+	private JLabel labelDescription;
+	private String[] intitules_images;
 	
 	
+	private JPanel listeDiapo;
+	private ArrayList <String>intitule_titre_evenement;
+	
+	private CardLayout GestionnaireDeCarte = new CardLayout(5,5);
 	
 	public PanelAffichage(Frise parFrise){
 		
-		
+		frise = parFrise;
 		this.setLayout(new BorderLayout(20,20));
 		
 		JLabel intituleFrise = new JLabel("<html><h1>"+parFrise.toString()+ "</h1></html>");
@@ -43,30 +57,49 @@ public class PanelAffichage extends JPanel {
 		intituleFrise.setVerticalAlignment(SwingConstants.CENTER);
 		
 		
+		listeDiapo = new JPanel();
+		listeDiapo.setLayout(GestionnaireDeCarte);
+		
 		
 		JPanel diapoEvent = new JPanel();
 		JPanel panelTableFrise = new JPanel();
 		/*COMPOSANTS POUR LE DIAPO EVENT*/
 		
 		File repertoire = new File("images");
-		String[] intitules_images = repertoire.list();
+		intitules_images = repertoire.list();
 		labelImg = new JLabel();
 		
 		
-		ImageIcon icon = new ImageIcon(new ImageIcon("images" + File.separator + "image_vide.jpg").getImage().getScaledInstance(200,200, Image.SCALE_DEFAULT));
-		labelImg= new JLabel(icon);
-//			tabLabels[i] = new JLabel(new ImageIcon("images" + File.separator + intitules_images[i]));
-
-		Evenement evt_vide = new Evenement(new Date(),"Aucun Evenement séléctionné","Veuillez séléctionner un evenement pour voir sa déscription",5, intitules_images[0]);
-		JLabel labelDescription = new JLabel(
-				"<html>"+ "<h1>"+evt_vide.getTitre()+"</h1></br></br>"+"<i>"+evt_vide.getDescription()+"</i>"+"</html>"
-		);
+		
+		
+		for(Evenement evt : frise.getEvenements()) {
+			JPanel panelDiapo = new JPanel();
+			
+			labelDescription = new JLabel(	"<html>"+ "<h1>"+evt.getTitre()+"</h1>"+"<h2>-- Le : "+evt.getDate()+"</h2></br></br>"+"<i>"+evt.getDescription()+"</i>"+"</html>");
+			panelDiapo.add(labelDescription);
+			
+			for(int i = 0; i< intitules_images.length; i++) {
+				if(evt.getNom_image().compareTo(intitules_images[i]) ==0) {
+					labelImg = new JLabel(new ImageIcon(new ImageIcon("images" + File.separator + intitules_images[i]).getImage().getScaledInstance(200,200, Image.SCALE_DEFAULT)));
+				}
+			}
+			
+			panelDiapo.add(labelImg);
+			String s = evt.getTitre() + evt.getPoid() + evt.getDate() + evt.getDescription();
+			listeDiapo.add(panelDiapo, s);
+			
+		}
 		
 		
 		
-		diapoEvent.add(labelImg);
-		diapoEvent.add(labelDescription);
 		
+		
+		
+		diapoEvent.add(listeDiapo);
+		for(int i =0; i < labelBouton.length; i++) {
+			bouton[i] = new JButton(labelBouton[i]);
+			diapoEvent.add(bouton[i]);
+		}
 		/*PARTIE AFFICHAGE DE LA TABLE, ON LA DEFINI ICI POUR PERMETTRE DE DYNAMISER L'AFFICHAGE*/
 		
 		
@@ -85,32 +118,10 @@ public class PanelAffichage extends JPanel {
 				Point point= evt.getPoint();
 				int rowIndex = table.rowAtPoint(point);
 				int colIndex = table.columnAtPoint(point);
-				
-				this.setDiapo((Evenement) modele.getValueAt(rowIndex, colIndex));
-				
-			}
+				Evenement event = (Evenement) modele.getValueAt(rowIndex, colIndex);
+				String s = event.getTitre() + event.getPoid() + event.getDate() + event.getDescription();
+				GestionnaireDeCarte.show(listeDiapo,s);
 
-			/** permet d'actualiser et de dynamiser l'affichage
-			 * 
-			 * @param evt : l'evenement que l'on va afficher sur le diapo
-			 */
-			private void setDiapo(Evenement evt) {
-				labelDescription.setText(	"<html>"+ "<h1>"+evt.getTitre()+"</h1>"+"<h2>-- Le : "+evt.getDate()+"</h2></br></br>"+"<i>"+evt.getDescription()+"</i>"+"</html>");
-				ImageIcon icon_modiv;
-				//parcourt de toutes les images dans le fichier
-				
-				for(int i = 0; i< intitules_images.length; i++) {
-					System.out.println(intitules_images[i]);
-					if(evt.getNom_image().compareTo(intitules_images[i]) ==0) {
-						icon_modiv = new ImageIcon(new ImageIcon("images" + File.separator + intitules_images[i]).getImage().getScaledInstance(200,200, Image.SCALE_DEFAULT));
-						labelImg = new JLabel(icon_modiv);
-					}
-				}
-				
-				diapoEvent.removeAll();
-				diapoEvent.add(labelImg);
-				diapoEvent.add(labelDescription);
-				;
 			}
 
 		});
@@ -143,5 +154,44 @@ public class PanelAffichage extends JPanel {
 	public void setFrise(Frise frise2) {
 		tableAnneeEvt.setModel(new ModeleTable(frise2.getPeriode(), frise2));		
 	}
+	
+	public void enregistreEcouteur(Controleur parC) {
+		for(int i = 0; i < labelBouton.length; i++ ) {
+			bouton[i].addActionListener(parC);
+			bouton[i].setActionCommand(labelBouton[i]);
+		}
+	}
+	
+	public void evenement_suivant() {
+		GestionnaireDeCarte.next(listeDiapo);
+	}
+	public void evenement_precedent() {
+		GestionnaireDeCarte.previous(listeDiapo);
+	}
+
+
+
+	public void ajoutPanel(Evenement evt) {
+		//ajoute dans le diapo l'eveneemnt en question
+		
+		JPanel panelDiapo = new JPanel();
+		
+		labelDescription = new JLabel(	"<html>"+ "<h1>"+evt.getTitre()+"</h1>"+"<h2>-- Le : "+evt.getDate()+"</h2></br></br>"+"<i>"+evt.getDescription()+"</i>"+"</html>");
+		panelDiapo.add(labelDescription);
+		
+		for(int i = 0; i< intitules_images.length; i++) {
+			if(evt.getNom_image().compareTo(intitules_images[i]) ==0) {
+				labelImg = new JLabel(new ImageIcon(new ImageIcon("images" + File.separator + intitules_images[i]).getImage().getScaledInstance(200,200, Image.SCALE_DEFAULT)));
+			}
+		}
+		
+		panelDiapo.add(labelImg);
+		String s = evt.getTitre() + evt.getPoid() + evt.getDate() + evt.getDescription();
+		listeDiapo.add(panelDiapo, s);
+		
+	}
+	
+
+	
 	
 }

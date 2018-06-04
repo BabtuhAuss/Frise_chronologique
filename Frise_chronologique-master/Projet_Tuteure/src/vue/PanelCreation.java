@@ -58,7 +58,7 @@ public class PanelCreation extends JPanel{
 		JLabel labelDate = new JLabel("Date");
 		JLabel labelJour = new JLabel("Jour");
 		JLabel labelMois = new JLabel("Mois");
-		JLabel labelAnnee = new JLabel("Année");
+		JLabel labelAnnee = new JLabel("Annï¿½e");
 		JLabel labelFrise = new JLabel("Nouvelle evenement");
 		JLabel labelDescription = new JLabel("Description");
 		

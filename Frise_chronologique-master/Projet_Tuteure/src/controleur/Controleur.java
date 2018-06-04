@@ -25,6 +25,7 @@ public class Controleur implements ActionListener{
 		panelAffichage = parAffichage;
 		
 		panelCreation.enregistreEcouteur(this);
+		panelAffichage.enregistreEcouteur(this);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -37,7 +38,13 @@ public class Controleur implements ActionListener{
 				e1.printStackTrace();
 			}
 			panelAffichage.setFrise(frise);
+			panelAffichage.ajoutPanel(panelCreation.getEvenement());
+		}
+		else if(arg0.getActionCommand().equals("<")) {
+			panelAffichage.evenement_precedent();
+		}
+		else if(arg0.getActionCommand().equals(">")) {
+			panelAffichage.evenement_suivant();
 		}
 	}
-
 }
