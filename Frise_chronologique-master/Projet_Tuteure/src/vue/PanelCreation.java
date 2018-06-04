@@ -172,7 +172,8 @@ public class PanelCreation extends JPanel{
 		return new Evenement(getDate(),fieldTitre.getText(),area.getText(), Integer.parseInt((String)choixPoid.getSelectedItem()), fieldImage.getText());
 	}
 	public Date getDate(){
-		return	dateFormulaire;
+		Date date = new Date(Integer.parseInt((String)choixJour.getSelectedItem()),Integer.parseInt((String)choixMois.getSelectedItem()),Integer.parseInt((String)choixAnnee.getSelectedItem()));
+		return	date;
 	}
 	
 	/*public void setDate(Date parDate){
