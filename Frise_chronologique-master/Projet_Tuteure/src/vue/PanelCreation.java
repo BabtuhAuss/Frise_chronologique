@@ -7,16 +7,13 @@ import javax.swing.*;
 import controleur.Controleur;
 import modele.*;
 
-//le formulaire contien 6 ligne, 5 colone, le premier gridx=0 gridy=0 le deusiemme gridx=0 et gridy=5, les zones de textes sont sur
-//plusieur ligne, aucun element sont sur plusieur colone.
 
 public class PanelCreation extends JPanel{
 	public final String NOM_BOUTON="+";
 	JButton boutonAjout = new JButton(NOM_BOUTON);	
 	Date dateFormulaire = new Date(2,6,2018);
-	JTextField fieldTitre = new JTextField(10);
-	JTextField fieldLieu= new JTextField(10);
-	JLabel labelDate = new JLabel(dateFormulaire.toString());
+	JTextField fieldTitre = new JTextField(14);
+	JTextField fieldImage= new JTextField(14);
 	JTextArea area = new JTextArea("",5,10);
 	
 	//a enlever peutaitre
@@ -44,10 +41,11 @@ public class PanelCreation extends JPanel{
 		for(int mois=1;mois<=12;mois++) {
 			choix_mois[mois-1]=""+mois;
 		}
-		int annee=1582;
+		
+		int annee=anneeActuelle;
 		for(int i=0;i<totaleAnnee;i++) {
 			choix_annee[i]=""+annee;
-			annee=annee+1;
+			annee=annee-1;
 		}
 		
 		choixPoid = new JComboBox(choix_poid);
@@ -56,8 +54,9 @@ public class PanelCreation extends JPanel{
 		choixAnnee = new JComboBox(choix_annee);
 		setLayout (new GridBagLayout());
 		JLabel labelTitre = new JLabel("Titre");
-		JLabel labelLieu = new JLabel("Lieu");
-		JLabel labelDebut = new JLabel("Date");
+		JLabel labelImage = new JLabel("Nom de l'image.format");
+		JLabel labelDate = new JLabel("Date(jour/mois/année)");
+		JLabel labelFrise = new JLabel("Ajout d'une frise");
 		JLabel labelDescription = new JLabel("Description");
 		
 		GridBagConstraints contrainte = new GridBagConstraints();
@@ -70,35 +69,24 @@ public class PanelCreation extends JPanel{
 		
 		contrainte.gridx=4 ; contrainte.gridy=2 ;
 		contrainte.gridwidth=4;
-		add(fieldLieu, contrainte);
+		add(fieldImage, contrainte);
 		
-		contrainte.gridx=7 ; contrainte.gridy=0 ;
+		contrainte.gridx=6 ; contrainte.gridy=0 ;
 		contrainte.gridwidth=4;
 		add(boutonAjout, contrainte);
 		boutonAjout.setActionCommand(NOM_BOUTON);
 		
 		
 		//deusiemme ligne (marche un peut)
-		contrainte.gridx=2 ; contrainte.gridy=2 ;
+		/*contrainte.gridx=2 ; contrainte.gridy=2 ;
 		contrainte.gridwidth=2;
-		this.add(labelDate, contrainte);
+		this.add(labelDate, contrainte);*/
 		
-		contrainte.gridx=4 ; contrainte.gridy=0 ;
-		contrainte.gridwidth=1;
-		this.add(choixJour, contrainte);
-		
-		contrainte.gridx=5 ; contrainte.gridy=0 ;
-		contrainte.gridwidth=1;
-		this.add(choixMois, contrainte);
-
-		contrainte.gridx=6 ; contrainte.gridy=0 ;
-		contrainte.gridwidth=1;
-		this.add(choixAnnee, contrainte);
 		
 		//premier colone
 		contrainte.gridx=0 ; contrainte.gridy=0 ;
 		contrainte.gridwidth=1;
-		this.add(labelDate, contrainte);
+		this.add(labelFrise, contrainte);
 		
 		contrainte.gridx=0 ; contrainte.gridy=1 ;
 		contrainte.gridwidth=1;
@@ -106,11 +94,23 @@ public class PanelCreation extends JPanel{
 		
 		contrainte.gridx=0 ; contrainte.gridy=2 ;
 		contrainte.gridwidth=1;
-		this.add(labelLieu, contrainte);
+		this.add(labelImage, contrainte);
 		
 		contrainte.gridx=0 ; contrainte.gridy=3 ;
 		contrainte.gridwidth=1;
-		this.add(labelDebut, contrainte);
+		this.add(labelDate, contrainte);
+		
+		contrainte.gridx=4 ; contrainte.gridy=3 ;
+		contrainte.gridwidth=1;
+		this.add(choixJour, contrainte);
+		
+		contrainte.gridx=5 ; contrainte.gridy=3 ;
+		contrainte.gridwidth=1;
+		this.add(choixMois, contrainte);
+
+		contrainte.gridx=6 ; contrainte.gridy=3 ;
+		contrainte.gridwidth=1;
+		this.add(choixAnnee, contrainte);
 		
 		contrainte.gridx=0 ; contrainte.gridy=4 ;
 		contrainte.gridwidth=1;
@@ -127,7 +127,7 @@ public class PanelCreation extends JPanel{
 		this.add(labelDescription, contrainte);
 		
 		contrainte.gridx=4 ; contrainte.gridy=5 ;
-		contrainte.gridwidth=0;
+		contrainte.gridwidth=2;
 		contrainte.gridheight=5;
 		this.add(area, contrainte);
 		
@@ -144,10 +144,10 @@ public class PanelCreation extends JPanel{
 		return	dateFormulaire;
 	}
 	
-	public void setDate(Date parDate){
+	/*public void setDate(Date parDate){
 		dateFormulaire = parDate;
 		labelDate.setText(dateFormulaire.toString());
-	}
+	}*/
 	
 	public void enregistreEcouteur(Controleur parC){
 		boutonAjout.addActionListener(parC);
@@ -155,7 +155,7 @@ public class PanelCreation extends JPanel{
 
 	public void reset() {
 		fieldTitre.setText(new String());
-		fieldLieu.setText(new String());
+		fieldImage.setText(new String());
 		area.setText(new String());
 		
 		GregorianCalendar calendar = new GregorianCalendar();
