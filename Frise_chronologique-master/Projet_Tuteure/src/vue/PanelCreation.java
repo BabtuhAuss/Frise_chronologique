@@ -25,7 +25,7 @@ public class PanelCreation extends JPanel{
 	String choix_jour[] = new String [31];
 	String choix_mois[] = new String [12];
 	String choix_annee[]= new String[totaleAnnee];
-	String choix_poid[] = {"1","2","3","4"};
+	String choix_poid[] = {"0","1","2","3"};
 	JLabel labelPoid = new JLabel("Poid");
 	JComboBox choixPoid;
 	JComboBox choixJour;
@@ -169,7 +169,7 @@ public class PanelCreation extends JPanel{
 
 	
 	public Evenement getEvenement(){
-		return new Evenement(getDate(),fieldTitre.getText(),area.getText(), (int)choixPoid.getSelectedItem(), "image_vide.jpg");
+		return new Evenement(getDate(),fieldTitre.getText(),area.getText(), Integer.parseInt((String)choixPoid.getSelectedItem()), fieldImage.getText());
 	}
 	public Date getDate(){
 		return	dateFormulaire;
