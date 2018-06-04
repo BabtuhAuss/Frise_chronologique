@@ -45,7 +45,31 @@ public class Date implements Serializable{
 			}
 		chaine +=annee;
 		return chaine;
-	  }  
+	  } 
+	
+	public static int dernierJourDuMois(int parMois, int parAnnee) {
+		switch(parMois) {
+		case 2:
+			if(estBissextile(parAnnee)) 
+				return 29;
+			else
+				return 28;
+		case 4: case 6: case 9: case 11: return 30;
+		default:
+			return 31;
+		}
+	}
+	
+	private static boolean estBissextile(int parAnnee) {
+		return parAnnee % 4 == 0 &&(parAnnee % 100 != 0 || parAnnee % 400 == 0);
+	}
+	
+	public boolean estValide(Date parDate) {
+		if(parDate.getJour() <= parDate.dernierJourDuMois(parDate.getMois(),parDate.getAnnee()))
+			return true;
+		return false;
+	}
+	
 	
 	public int getAnnee() { 
 		return annee;
