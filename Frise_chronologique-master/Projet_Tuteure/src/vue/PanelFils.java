@@ -19,22 +19,18 @@ import modele.LectureEcriture;
 
 @SuppressWarnings("serial")
 public class PanelFils extends JPanel implements ActionListener {
-	String[] intitule_cartes = {"Creation","Affichage","?"};
+	
+	String[] intitule_cartes = {"Creation","Affichage","?", "Frise"};
 	CardLayout gestionnaireDeCartes;
 	
 	public PanelFils(){
 		
 		Frise maFrise = new Frise("la vie de baptiste", 2000, 2020, 5);
 		
-		Evenement evt1 = new Evenement(new Date(), "titre", "description", 2, "photo1.jpg");
-		Evenement evt2 = new Evenement(new Date(5,8,2005),"titre2","description2",1, "photo2.jpg");
-		Evenement evt3 = new Evenement(new Date(5,7,2005),"titre2","description2",4, "photo3.jpg");
-		Evenement evt4 = new Evenement(new Date(5,6,2005),"titre2","description2",3, "photo4.jpg");
+		System.out.println("evenements de début");
+		System.out.println(maFrise.getEvenements());
 		
-		maFrise.ajout(evt1);
-		maFrise.ajout(evt2);
-		maFrise.ajout(evt3);
-		maFrise.ajout(evt4);
+		
 		
 		File monFichier = new File("Frises" + File.separator + "frise_1.ser");
 		
