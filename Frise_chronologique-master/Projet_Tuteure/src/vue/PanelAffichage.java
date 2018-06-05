@@ -52,7 +52,7 @@ public class PanelAffichage extends JPanel {
 	private JScrollPane scroll;
 	
 	
-	
+	JLabel intituleFrise;
 	
 	JLabel labelTitre;
 	
@@ -61,7 +61,7 @@ public class PanelAffichage extends JPanel {
 		frise = parFrise;
 		this.setLayout(new BorderLayout(20,20));
 		
-		JLabel intituleFrise = new JLabel("<html><h1>"+parFrise.toString()+ "</h1></html>");
+		intituleFrise = new JLabel("<html><h1>"+parFrise.toString()+ "</h1></html>");
 		intituleFrise.setHorizontalAlignment(SwingConstants.CENTER);
 		intituleFrise.setVerticalAlignment(SwingConstants.CENTER);
 		
@@ -194,7 +194,9 @@ public class PanelAffichage extends JPanel {
 	public void getEvenementAffichage() {
 		
 	}
-
+	public void setTitreAffichage(String nouveauTitre) {
+		labelTitre.setText("<html><h1>"+nouveauTitre+ "</h1></html>");
+	}
 
 	public void ajoutPanel(Evenement evt) {
 		//ajoute dans le diapo l'eveneemnt en question
