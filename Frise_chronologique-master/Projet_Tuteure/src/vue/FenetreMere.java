@@ -37,7 +37,7 @@ public class FenetreMere extends JFrame{
 		itmMenuCreeFrise.addActionListener(contentPane);
 		menuFrise.add(itmMenuOuvrFrise);
 		menuFrise.add(itmMenuCreeFrise);
-		//menuFrise.setActionCommand("Frise");
+		menuFrise.setActionCommand("Frise");
 		
 		JMenuItem popUpAboutUs = new JMenuItem("?");
 		popUpAboutUs.addActionListener(contentPane);

@@ -33,7 +33,6 @@ public class ModeleTable extends DefaultTableModel{
 		//Ajout des evenements dans la table
 		for(int i = 0; i<val_annee.length; i++) {
 			Collection <Evenement> evtsAnnee = parFrise.getEvenementAnnee(parFrise.getAnneeDebut()+i);
-			System.out.println("evts annee : " + evtsAnnee);
 			if (evtsAnnee != null) {
 				for(Evenement evt : evtsAnnee)
 					ajoutEvenement(evt, i);	

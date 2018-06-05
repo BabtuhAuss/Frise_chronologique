@@ -136,7 +136,6 @@ public class PanelAffichage extends JPanel {
 				Evenement event = (Evenement) modele.getValueAt(rowIndex, colIndex);
 				String s = event.getTitre() + event.getPoid() + event.getDate() + event.getDescription();
 				GestionnaireDeCarte.show(listeDiapo,s);
-				System.out.println(point);
 			}
 		});
 		
@@ -146,7 +145,6 @@ public class PanelAffichage extends JPanel {
 		
 		scroll.setPreferredSize(new Dimension(1000,450));
 		
-		System.out.println(scroll.getHorizontalScrollBar().getValue());
 		
 		
 		panelTableFrise.add(scroll);

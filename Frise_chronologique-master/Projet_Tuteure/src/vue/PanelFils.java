@@ -22,17 +22,12 @@ public class PanelFils extends JPanel implements ActionListener {
 	
 	String[] intitule_cartes = {"Creation","Affichage","?", "Frise"};
 	CardLayout gestionnaireDeCartes;
-	Frise maFrise = new Frise("la vie de baptiste", 2000, 2020, 5);
-	PanelCreation creation = new PanelCreation();
-	PanelAffichage affichage = new PanelAffichage(maFrise);
+	Frise maFrise;
+	PanelCreation creation;
+	PanelAffichage affichage;
 	
 	public PanelFils(){
-				
-		System.out.println("evenements de début");
-		System.out.println(maFrise.getEvenements());
-		
-		
-		
+
 		File monFichier = new File("Frises" + File.separator + "frise_1.ser");
 		
 		if (monFichier.length() != 0) {
@@ -44,7 +39,11 @@ public class PanelFils extends JPanel implements ActionListener {
 				e.printStackTrace();
 			}
 		}
+		else
+			nouvelleFrise();
 		
+		creation = new PanelCreation();
+		affichage = new PanelAffichage(maFrise);
 		
 		gestionnaireDeCartes = new CardLayout(5,5);
 		this.setLayout(gestionnaireDeCartes);
@@ -69,24 +68,29 @@ public class PanelFils extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Ceci est fait par Castello Nicolas et Aussenac Baptiste");
 		}
 		if(actionCommand.equals("Ouvrire une frise")) {
-			String nomFrise = JOptionPane.showInputDialog(null, "Nom de la frise:", "Ouvrire une frise", JOptionPane.QUESTION_MESSAGE);
+			String nomFrise = JOptionPane.showInputDialog(null, "Nom de la frise.ser:", "Ouvrire une frise", JOptionPane.QUESTION_MESSAGE);
+			
+			File monFichier = new File("Frises" + File.separator + nomFrise);
+			if (monFichier.length() != 0) {
+				try {
+					maFrise = (Frise) LectureEcriture.lecture(monFichier);
+					System.out.println(maFrise);
+					affichage.setTitreAffichage(maFrise.getTitre());
+					affichage.setFrise(maFrise);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			}
+			affichage=new PanelAffichage(maFrise);
+			creation = new PanelCreation();
+			updateUI();
 		}
 		
 		if(actionCommand.equals("Nouvelle frise")) {
-			String nom = JOptionPane.showInputDialog(null, "Titre de la frise:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
-			String debut = JOptionPane.showInputDialog(null, "Annee de debut de la frise:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
-			String fin = JOptionPane.showInputDialog(null, "Annee de fin de la frise:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
-			String intervale = JOptionPane.showInputDialog(null, "Annee a aficher:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
-			
-			maFrise = new Frise(nom,Integer.parseInt(debut),Integer.parseInt(fin),Integer.parseInt(intervale));
-			File monFichier = new File("Frises" + File.separator + nom+".ser");
-			try {
-				LectureEcriture.ecriture(monFichier, maFrise);
-				affichage.setTitreAffichage(nom);
-				affichage.setFrise(maFrise);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			nouvelleFrise();
 		}
 		
 		if(actionCommand.equals("Fermer")){
@@ -102,5 +106,23 @@ public class PanelFils extends JPanel implements ActionListener {
 			}
 			
 		}		
+	}
+	
+	public void nouvelleFrise() {
+		String nom = JOptionPane.showInputDialog(null, "Titre de la frise:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
+		String debut = JOptionPane.showInputDialog(null, "Annee de debut de la frise:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
+		String fin = JOptionPane.showInputDialog(null, "Annee de fin de la frise:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
+		String intervale = JOptionPane.showInputDialog(null, "Annee a aficher:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
+		
+		maFrise = new Frise(nom,Integer.parseInt(debut),Integer.parseInt(fin),Integer.parseInt(intervale));
+		File monFichier = new File("Frises" + File.separator + nom+".ser");
+		try {
+			LectureEcriture.ecriture(monFichier, maFrise);
+			
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		affichage = new PanelAffichage(maFrise);
+		creation = new PanelCreation();
 	}
 }
