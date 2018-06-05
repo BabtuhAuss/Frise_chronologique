@@ -30,17 +30,17 @@ public class Date implements Serializable{
 	    String chaine = new String();
 		chaine =jour + " ";
 		switch (mois) {
-			 case 1: chaine += "janvier"; break;
-			 case 2: chaine += "février"; break;
-			 case 3: chaine += "mars"; break;
-			 case 4: chaine += "avril"; break;
-			 case 5: chaine += "mai"; break;
-			 case 6: chaine += "juin"; break;
-			 case 7: chaine += "juillet"; break;
-			 case 8: chaine += "août"; break;
-			 case 9: chaine += "septembre"; break;
-			 case 10: chaine += "octobre"; break;
-			 case 11: chaine += "novembre"; break;
+			 case 1: chaine += "janvier "; break;
+			 case 2: chaine += "février "; break;
+			 case 3: chaine += "mars "; break;
+			 case 4: chaine += "avril "; break;
+			 case 5: chaine += "mai "; break;
+			 case 6: chaine += "juin "; break;
+			 case 7: chaine += "juillet "; break;
+			 case 8: chaine += "août "; break;
+			 case 9: chaine += "septembre "; break;
+			 case 10: chaine += "octobre "; break;
+			 case 11: chaine += "novembre "; break;
 			 case 12: chaine += "décembre"+" "; break;
 			}
 		chaine +=annee;
