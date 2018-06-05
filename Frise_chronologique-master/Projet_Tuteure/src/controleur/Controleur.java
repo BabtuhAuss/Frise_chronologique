@@ -31,7 +31,7 @@ public class Controleur implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getActionCommand().equals("+")) {
 			frise.ajout(panelCreation.getEvenement());
-			File monFichier = new File("Frises" + File.separator + "frise_1.ser");
+			File monFichier = new File("Frises" + File.separator + frise.toString() + ".ser");
 			try {
 				LectureEcriture.ecriture(monFichier, frise);
 			} catch (IOException e1) {

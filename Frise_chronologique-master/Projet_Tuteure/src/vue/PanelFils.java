@@ -25,14 +25,16 @@ public class PanelFils extends JPanel implements ActionListener {
 	Frise maFrise;
 	PanelCreation creation;
 	PanelAffichage affichage;
-	
+	Controleur controleur;
 	public PanelFils(){
-
-		File monFichier = new File("Frises" + File.separator + "frise_1.ser");
 		
-		if (monFichier.length() != 0) {
+		
+		int taille_dossier = new File("Frises").listFiles().length;
+		if (taille_dossier != 0) {
 			try {
-				maFrise = (Frise) LectureEcriture.lecture(monFichier);
+				//File monFichier = new File("Frises" + File.separator+"frise1.ser");
+				
+				maFrise = (Frise) LectureEcriture.lecture(new File("Frises").listFiles()[0]);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -51,9 +53,8 @@ public class PanelFils extends JPanel implements ActionListener {
 		this.add(creation, intitule_cartes[0]);
 		
 		this.add(affichage, intitule_cartes[1]);
-		gestionnaireDeCartes.show(this, intitule_cartes[0]);
-
-		Controleur controleur = new Controleur(maFrise, creation, affichage);
+		
+		controleur = new Controleur(maFrise, creation, affichage);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -74,8 +75,7 @@ public class PanelFils extends JPanel implements ActionListener {
 			if (monFichier.length() != 0) {
 				try {
 					maFrise = (Frise) LectureEcriture.lecture(monFichier);
-					System.out.println(maFrise);
-					affichage.setTitreAffichage(maFrise.getTitre());
+					affichage.setTitreAffichage(maFrise.toString());
 					affichage.setFrise(maFrise);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
@@ -86,7 +86,11 @@ public class PanelFils extends JPanel implements ActionListener {
 			}
 			affichage=new PanelAffichage(maFrise);
 			creation = new PanelCreation();
-			updateUI();
+			this.removeAll();
+			this.add(creation, intitule_cartes[0]);
+			
+			this.add(affichage, intitule_cartes[1]);
+			controleur = new Controleur(maFrise, creation, affichage);
 		}
 		
 		if(actionCommand.equals("Nouvelle frise")) {
@@ -122,7 +126,12 @@ public class PanelFils extends JPanel implements ActionListener {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		affichage = new PanelAffichage(maFrise);
+		affichage=new PanelAffichage(maFrise);
 		creation = new PanelCreation();
+		this.removeAll();
+		this.add(creation, intitule_cartes[0]);
+		
+		this.add(affichage, intitule_cartes[1]);
+		controleur = new Controleur(maFrise, creation, affichage);
 	}
 }
