@@ -97,20 +97,19 @@ public class PanelAffichage extends JPanel {
 			
 			panelDiapo.add(labelImg);
 			String s = evt.getTitre() + evt.getPoid() + evt.getDate() + evt.getDescription();
+			panelDiapo.setName(Integer.toString(evt.getDate().getAnnee()));
 			listeDiapo.add(panelDiapo, s);
 			
 		}
-		
-		
-		
-		
-		
 		
 		diapoEvent.add(listeDiapo);
 		for(int i =0; i < labelBouton.length; i++) {
 			bouton[i] = new JButton(labelBouton[i]);
 			diapoEvent.add(bouton[i]);
 		}
+		
+		
+		
 		
 		
 		
@@ -184,20 +183,40 @@ public class PanelAffichage extends JPanel {
 	
 	public void evenement_suivant() {
 		GestionnaireDeCarte.next(listeDiapo);
-		
+		positionScroll(getEvenementAnnee());		
 	}
 	public void evenement_precedent() {
 		GestionnaireDeCarte.previous(listeDiapo);
-		System.out.println(listeDiapo.getComponents());
+		positionScroll(getEvenementAnnee());
 	}
+	
+	
+	
+	
 
-	public void getEvenementAffichage() {
-		
+	public int getEvenementAnnee() {
+		JPanel card = null;
+		for (Component comp : listeDiapo.getComponents()) {
+		    if (comp.isVisible() == true) {
+		        card = (JPanel) comp;
+		    }
+		}
+		return Integer.parseInt(card.getName());
 	}
+	
+	
+	
+	
+	
 	public void setTitreAffichage(String nouveauTitre) {
 		intituleFrise.setText("<html><h1>"+nouveauTitre+"</h1></html>");
 	}
 
+	
+	
+	
+	
+	
 	public void ajoutPanel(Evenement evt) {
 		//ajoute dans le diapo l'eveneemnt en question
 		
@@ -214,9 +233,19 @@ public class PanelAffichage extends JPanel {
 		
 		panelDiapo.add(labelImg);
 		String s = evt.getTitre() + evt.getPoid() + evt.getDate() + evt.getDescription();
+		panelDiapo.setName(Integer.toString(evt.getDate().getAnnee()));
 		listeDiapo.add(panelDiapo, s);
 		
+		
+		
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	public void positionScroll(int annee) {
 		double pourcentage = (double) (annee-frise.getAnneeDebut())/(frise.getAnneeFin()-frise.getAnneeDebut());
