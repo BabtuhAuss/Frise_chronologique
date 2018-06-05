@@ -1,6 +1,8 @@
 package vue;
 
 import java.awt.*;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -11,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
@@ -46,6 +49,12 @@ public class PanelAffichage extends JPanel {
 	private ArrayList <String>intitule_titre_evenement;
 	
 	private CardLayout GestionnaireDeCarte = new CardLayout(5,5);
+	private JScrollPane scroll;
+	
+	
+	
+	
+	JLabel labelTitre;
 	
 	public PanelAffichage(Frise parFrise){
 		
@@ -75,6 +84,8 @@ public class PanelAffichage extends JPanel {
 		for(Evenement evt : frise.getEvenements()) {
 			JPanel panelDiapo = new JPanel();
 			
+			
+			
 			labelDescription = new JLabel(	"<html>"+ "<h1>"+evt.getTitre()+"</h1>"+"<h2>-- Le : "+evt.getDate()+"</h2></br></br>"+"<i>"+evt.getDescription()+"</i>"+"</html>");
 			panelDiapo.add(labelDescription);
 			
@@ -100,16 +111,21 @@ public class PanelAffichage extends JPanel {
 			bouton[i] = new JButton(labelBouton[i]);
 			diapoEvent.add(bouton[i]);
 		}
+		
+		
+		
 		/*PARTIE AFFICHAGE DE LA TABLE, ON LA DEFINI ICI POUR PERMETTRE DE DYNAMISER L'AFFICHAGE*/
 		
 		
-		frise = parFrise;
+		
 		modele = new ModeleTable(frise.getPeriode(), frise);
 		
 		tableAnneeEvt = new JTable(modele);
 		
 		tableAnneeEvt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
+		scroll = new JScrollPane(tableAnneeEvt);
+
 		tableAnneeEvt.addMouseListener(new MouseAdapter(){
 		
 			public void mouseClicked(MouseEvent evt){
@@ -121,24 +137,28 @@ public class PanelAffichage extends JPanel {
 				Evenement event = (Evenement) modele.getValueAt(rowIndex, colIndex);
 				String s = event.getTitre() + event.getPoid() + event.getDate() + event.getDescription();
 				GestionnaireDeCarte.show(listeDiapo,s);
-
+				System.out.println(point);
 			}
-
 		});
+		
 		tableAnneeEvt.setDefaultRenderer(Evenement.class, new CelluleRenderer());
-		JScrollPane scroll = new JScrollPane(tableAnneeEvt, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED );
-
 		scroll.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 25));
 		
 		
 		scroll.setPreferredSize(new Dimension(1000,450));
 		
-		//panelTableFrise.add(tableAnneeEvt);
+		System.out.println(scroll.getHorizontalScrollBar().getValue());
+		
+		
 		panelTableFrise.add(scroll);
 		
 		tableAnneeEvt.setRowHeight(100);
 	
 		/*FIN DE LA TABLE*/
+		
+		
+		
+		
 		
 
 		//ajout des trois panels dans la classe PanelAffichage
@@ -164,11 +184,16 @@ public class PanelAffichage extends JPanel {
 	
 	public void evenement_suivant() {
 		GestionnaireDeCarte.next(listeDiapo);
+		
 	}
 	public void evenement_precedent() {
 		GestionnaireDeCarte.previous(listeDiapo);
+		System.out.println(listeDiapo.getComponents());
 	}
 
+	public void getEvenementAffichage() {
+		
+	}
 
 
 	public void ajoutPanel(Evenement evt) {
@@ -191,7 +216,15 @@ public class PanelAffichage extends JPanel {
 		
 	}
 	
-
+	public void positionScroll(int annee) {
+		double pourcentage = (double) (annee-frise.getAnneeDebut())/(frise.getAnneeFin()-frise.getAnneeDebut());
+		double coucou =  pourcentage;
+		double coucou2 = 500 * coucou;
+	
+		JScrollBar scrollBar = scroll.getHorizontalScrollBar();
+		scrollBar.setValue(0);
+		scrollBar.setValue(scrollBar.getValue() + (int) coucou2);
+	}
 	
 	
 }
