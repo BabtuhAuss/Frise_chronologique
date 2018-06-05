@@ -10,29 +10,28 @@ import modele.*;
 
 public class PanelCreation extends JPanel{
 	public final String NOM_BOUTON="+";
-	JButton boutonAjout = new JButton(NOM_BOUTON);	
-	Date dateFormulaire = new Date(2,6,2018);
-	JTextField fieldTitre = new JTextField(14);
-	JTextField fieldImage= new JTextField(14);
-	JTextArea area = new JTextArea("",5,10);
+	private JButton boutonAjout = new JButton(NOM_BOUTON);	
+	private JTextField fieldTitre = new JTextField(14);
+	private JTextField fieldImage= new JTextField(14);
+	private JTextArea area = new JTextArea("",5,10);
 	
-	//a enlever peutaitre
-	GregorianCalendar dateAuj = new GregorianCalendar ();
-	int anneeActuelle = dateAuj.get (Calendar.YEAR);
-	int totaleAnnee = (anneeActuelle - 1582)+1;
-	
-	
-	String choix_jour[] = new String [31];
-	String choix_mois[] = new String [12];
-	String choix_annee[]= new String[totaleAnnee];
-	String choix_poid[] = {"0","1","2","3"};
-	JLabel labelPoid = new JLabel("Poid");
-	JComboBox choixPoid;
-	JComboBox choixJour;
-	JComboBox choixMois;
-	JComboBox choixAnnee;
+	private JComboBox choixPoid;
+	private JComboBox choixJour;
+	private JComboBox choixMois;
+	private JComboBox choixAnnee;
 	
 	public PanelCreation(){
+	
+		//a enlever peutaitre
+		GregorianCalendar dateAuj = new GregorianCalendar ();
+		int anneeActuelle = dateAuj.get (Calendar.YEAR);
+		int totaleAnnee = (anneeActuelle - 1582)+1;
+		
+		JLabel labelPoid = new JLabel("Poid");
+		String choix_jour[] = new String [31];
+		String choix_mois[] = new String [12];
+		String choix_annee[]= new String[totaleAnnee];
+		String choix_poid[] = {"0","1","2","3"};
 		
 		for(int jour=1;jour<=31;jour++) {
 			choix_jour[jour-1]=""+jour;
@@ -183,6 +182,7 @@ public class PanelCreation extends JPanel{
 	
 	public void enregistreEcouteur(Controleur parC){
 		boutonAjout.addActionListener(parC);
+		//this.reset();
 	}
 
 	public void reset() {
