@@ -3,6 +3,7 @@ package vue;
 import java.awt.Color;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
@@ -26,9 +27,17 @@ public class FenetreMere extends JFrame{
 		interfaceAffichage.addActionListener(contentPane);
 		interfaceAffichage.setActionCommand("Affichage");
 		
-		JMenuItem menuFrise = new JMenuItem("Frise...");
+		JMenu menuFrise = new JMenu("Frise...");
 		menuFrise.addActionListener(contentPane);
-		menuFrise.setActionCommand("Frise");
+		JMenuItem itmMenuOuvrFrise = new JMenuItem("Ouvrire une frise");
+		JMenuItem itmMenuCreeFrise = new JMenuItem("Nouvelle frise");
+		itmMenuOuvrFrise.setActionCommand("Ouvrire une frise");
+		itmMenuOuvrFrise.addActionListener(contentPane);
+		itmMenuCreeFrise.setActionCommand("Nouvelle frise");
+		itmMenuCreeFrise.addActionListener(contentPane);
+		menuFrise.add(itmMenuOuvrFrise);
+		menuFrise.add(itmMenuCreeFrise);
+		//menuFrise.setActionCommand("Frise");
 		
 		JMenuItem popUpAboutUs = new JMenuItem("?");
 		popUpAboutUs.addActionListener(contentPane);

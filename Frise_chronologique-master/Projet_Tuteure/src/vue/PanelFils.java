@@ -22,11 +22,12 @@ public class PanelFils extends JPanel implements ActionListener {
 	
 	String[] intitule_cartes = {"Creation","Affichage","?", "Frise"};
 	CardLayout gestionnaireDeCartes;
+	Frise maFrise = new Frise("la vie de baptiste", 2000, 2020, 5);
+	PanelCreation creation = new PanelCreation();
+	PanelAffichage affichage = new PanelAffichage(maFrise);
 	
 	public PanelFils(){
-		
-		Frise maFrise = new Frise("la vie de baptiste", 2000, 2020, 5);
-		
+				
 		System.out.println("evenements de début");
 		System.out.println(maFrise.getEvenements());
 		
@@ -48,10 +49,8 @@ public class PanelFils extends JPanel implements ActionListener {
 		gestionnaireDeCartes = new CardLayout(5,5);
 		this.setLayout(gestionnaireDeCartes);
 		
-		PanelCreation creation = new PanelCreation();
 		this.add(creation, intitule_cartes[0]);
 		
-		PanelAffichage affichage = new PanelAffichage(maFrise);
 		this.add(affichage, intitule_cartes[1]);
 		gestionnaireDeCartes.show(this, intitule_cartes[0]);
 
@@ -69,6 +68,27 @@ public class PanelFils extends JPanel implements ActionListener {
 		if(actionCommand.equals("?")){
 			JOptionPane.showMessageDialog(null, "Ceci est fait par Castello Nicolas et Aussenac Baptiste");
 		}
+		if(actionCommand.equals("Ouvrire une frise")) {
+			String nomFrise = JOptionPane.showInputDialog(null, "Nom de la frise:", "Ouvrire une frise", JOptionPane.QUESTION_MESSAGE);
+		}
+		
+		if(actionCommand.equals("Nouvelle frise")) {
+			String nom = JOptionPane.showInputDialog(null, "Titre de la frise:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
+			String debut = JOptionPane.showInputDialog(null, "Annee de debut de la frise:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
+			String fin = JOptionPane.showInputDialog(null, "Annee de fin de la frise:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
+			String intervale = JOptionPane.showInputDialog(null, "Annee a aficher:", "Nouvelle frise", JOptionPane.QUESTION_MESSAGE);
+			
+			maFrise = new Frise(nom,Integer.parseInt(debut),Integer.parseInt(fin),Integer.parseInt(intervale));
+			File monFichier = new File("Frises" + File.separator + nom+".ser");
+			try {
+				LectureEcriture.ecriture(monFichier, maFrise);
+				affichage.setTitreAffichage(nom);
+				affichage.setFrise(maFrise);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
 		if(actionCommand.equals("Fermer")){
 			int saisi = JOptionPane.showConfirmDialog(this,"veux-tu vraiment quitter ca petit ?", "QUITTER ?",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			switch(saisi){

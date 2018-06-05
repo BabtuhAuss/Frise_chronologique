@@ -195,7 +195,7 @@ public class PanelAffichage extends JPanel {
 		
 	}
 	public void setTitreAffichage(String nouveauTitre) {
-		labelTitre.setText("<html><h1>"+nouveauTitre+ "</h1></html>");
+		intituleFrise.setText("<html><h1>"+nouveauTitre+"</h1></html>");
 	}
 
 	public void ajoutPanel(Evenement evt) {
