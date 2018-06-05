@@ -13,27 +13,32 @@ import modele.Evenement;
 /**
  * C'est une classe qui va permettre de rendre plus attrayant la table
  */
-public class CelluleRenderer extends JLabel implements TableCellRenderer{
+public class CelluleRenderer extends JLabel implements TableCellRenderer {
 
 	public CelluleRenderer() {
 		super();
 		setOpaque(true);
 		setHorizontalAlignment(JLabel.CENTER);
-		this.setForeground(new java.awt.Color(180,100,40));
+		this.setForeground(new java.awt.Color(180, 100, 40));
 	}
 
-	public Component getTableCellRendererComponent(JTable table, Object valeur, boolean estSelectionne, boolean aLeFocus, int ligne, int colonne) {
-		if(valeur == null){
+	/**
+	 * mets en jaune toutes les cases qui ont des evenements
+	 * 
+	 */
+	
+	public Component getTableCellRendererComponent(JTable table, Object valeur, boolean estSelectionne,
+			boolean aLeFocus, int ligne, int colonne) {
+		if (valeur == null) {
 			setText("");
-			setBackground(new Color(255,255,255));
-			}
-		else{
-			Evenement valeurS =(Evenement)valeur;
+			setBackground(new Color(255, 255, 255));
+		} else {
+			Evenement valeurS = (Evenement) valeur;
 			this.setText(valeurS.toString());
-			this.setFont(new Font("Calibri", Font.BOLD,15));
-			this.setBackground(new Color(255,255,0));
+			this.setFont(new Font("Calibri", Font.BOLD, 15));
+			this.setBackground(new Color(255, 255, 0));
 		}
-		
+
 		return this;
 	}
 

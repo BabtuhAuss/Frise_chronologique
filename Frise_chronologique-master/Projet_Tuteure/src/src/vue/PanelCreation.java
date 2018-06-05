@@ -8,6 +8,7 @@ import controleur.Controleur;
 import modele.*;
 
 
+@SuppressWarnings("serial")
 public class PanelCreation extends JPanel{
 	public final String NOM_BOUTON="+";
 	private JButton boutonAjout = new JButton(NOM_BOUTON);	

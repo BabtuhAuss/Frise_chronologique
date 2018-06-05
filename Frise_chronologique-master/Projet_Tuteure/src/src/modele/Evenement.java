@@ -5,7 +5,7 @@ import java.io.Serializable;
 /*
  * 
  */
-public class Evenement implements Comparable <Evenement>, Serializable{
+public class Evenement implements Comparable<Evenement>, Serializable {
 
 	/**
 	 * 
@@ -16,7 +16,7 @@ public class Evenement implements Comparable <Evenement>, Serializable{
 	private String titre;
 	private String description;
 	private String nom_image;
-	
+
 	/**
 	 * @return the nom_image
 	 */
@@ -25,7 +25,8 @@ public class Evenement implements Comparable <Evenement>, Serializable{
 	}
 
 	/**
-	 * @param nom_image the nom_image to set
+	 * @param nom_image
+	 *            the nom_image to set
 	 */
 	public void setNom_image(String nom_image) {
 		this.nom_image = nom_image;
@@ -39,7 +40,8 @@ public class Evenement implements Comparable <Evenement>, Serializable{
 	}
 
 	/**
-	 * @param poid the poid to set
+	 * @param poid
+	 *            the poid to set
 	 */
 	public void setPoid(int poid) {
 		this.poid = poid;
@@ -53,7 +55,8 @@ public class Evenement implements Comparable <Evenement>, Serializable{
 	}
 
 	/**
-	 * @param titre the titre to set
+	 * @param titre
+	 *            the titre to set
 	 */
 	public void setTitre(String titre) {
 		this.titre = titre;
@@ -67,21 +70,21 @@ public class Evenement implements Comparable <Evenement>, Serializable{
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
 	/**
-	 * @param date the date to set
+	 * @param date
+	 *            the date to set
 	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	
-	
 	public Evenement(Date date, String titre, String description, int poid, String photo) {
 		this.date = date;
 		this.titre = titre;
@@ -89,22 +92,26 @@ public class Evenement implements Comparable <Evenement>, Serializable{
 		this.poid = poid;
 		this.nom_image = photo;
 	}
-	
-	
-	/** cette fonction est utile pour le TreeSet qui est présent, en différenciant chaques évenements par son poid, unique.
-	 * @param l'evenement à comparer pour le TreeSet
-	 * @return un entier pour definir quel position aura l'evenement dans la collection
+
+	/**
+	 * cette fonction est utile pour le TreeSet qui est présent, en différenciant
+	 * chaques évenements par son poid, unique.
+	 * 
+	 * @param l'evenement
+	 *            à comparer pour le TreeSet
+	 * @return un entier pour definir quel position aura l'evenement dans la
+	 *         collection
 	 */
-	public int compareTo(Evenement evt){
-		if(poid < evt.poid)
+	public int compareTo(Evenement evt) {
+		if (poid < evt.poid)
 			return -1;
-		else if(poid > evt.poid)
+		else if (poid > evt.poid)
 			return 1;
 		else
 			return 0;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return titre;
 	}
 
@@ -112,7 +119,7 @@ public class Evenement implements Comparable <Evenement>, Serializable{
 	 * 
 	 * @return l'evenement en question
 	 */
-	public Evenement getEvt(){
+	public Evenement getEvt() {
 		return this;
 	}
 
@@ -123,6 +130,5 @@ public class Evenement implements Comparable <Evenement>, Serializable{
 	public Date getDate() {
 		return date;
 	}
-	
-	
+
 }
