@@ -49,8 +49,8 @@ public class ModeleTable extends DefaultTableModel {
 	
 	/**methode qui permet d'ajouter un evenement sur la JTable
 	 * 
-	 * @param evenement a ajouter 
-	 * @param l'annee en question, ou l'on va rajouter l'evenement
+	 * @param evt l'evenement a ajouter 
+	 * @param i l'annee en question, ou l'on va rajouter l'evenement
 	 */
 	public void ajoutEvenement(Evenement evt, int i) {
 		int indiceColonne = i;

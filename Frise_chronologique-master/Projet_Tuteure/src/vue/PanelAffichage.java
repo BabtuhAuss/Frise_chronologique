@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -71,10 +72,10 @@ public class PanelAffichage extends JPanel {
 		intitules_images = repertoire.list();
 		labelImg = new JLabel();
 
-		for (Evenement evt : frise.getEvenements()) {
+		for (Evenement evt : frise.getEvenements()) { //on va parcourir tout les evenements de la frise pour les transformer en panel
 			JPanel panelDiapo = new JPanel();
 
-			labelDescription = new JLabel("<html>" + "<h1>" + evt.getTitre() + "</h1>" + "<h2>-- Le : " + evt.getDate()
+			labelDescription = new JLabel("<html>" + "<h1>" + evt.getTitre() + "</h1>" + "<h2>-- Le : " + evt.getDate() //description de l'evenement
 					+ "</h2></br></br>" + "<i>" + evt.getDescription() + "</i>" + "</html>");
 			panelDiapo.add(labelDescription);
 
@@ -86,8 +87,8 @@ public class PanelAffichage extends JPanel {
 			}
 
 			panelDiapo.add(labelImg);
-			String s = evt.getTitre() + evt.getPoid() + evt.getDate() + evt.getDescription();
-			panelDiapo.setName(Integer.toString(evt.getDate().getAnnee()));
+			String s = evt.getTitre() + evt.getPoid() + evt.getDate() + evt.getDescription(); //CHAQUE EVENEMENT EST UNIQUE ALORS COMME INTITULE POUR LE CARD LAYOUT ON MET JUSTE LE STRING DE TOUT LES CHAMPS 
+			panelDiapo.setName(Integer.toString(evt.getDate().getAnnee())); //IMPORTANT DE METTRE L'ANNEE EN NOM DU PANEL POUR POUVOIR LA RECUPERER POUR LE POSITIONNEMENT DU PARCHEMIN
 			listeDiapo.add(panelDiapo, s);
 
 		}
@@ -147,7 +148,7 @@ public class PanelAffichage extends JPanel {
 	
 	/** modifie le modele de la table
 	 * 
-	 * @param frise2
+	 * @param frise2 la nouvelle frise qui va etre presente 
 	 */
 	public void setFrise(Frise frise2) {
 		tableAnneeEvt.setModel(new ModeleTable(frise2.getPeriode(), frise2));
@@ -155,7 +156,7 @@ public class PanelAffichage extends JPanel {
 
 	/** ajout des Actions vers le controleur
 	 * 
-	 * @param le controleur
+	 * @param parC le controleur qui va gerer les bouton de navigation (fleches)
 	 */
 	public void enregistreEcouteur(Controleur parC) {
 		for (int i = 0; i < labelBouton.length; i++) {
@@ -180,7 +181,7 @@ public class PanelAffichage extends JPanel {
 		positionScroll(getEvenementAnnee());
 	}
 
-	/** méthode qui est utilisé pour la position du scroll, <>/br
+	/** méthode qui est utilisé pour la position du scroll, <br>
 	 * elle renvoie le nom du panel affiché sur le CardLayout (le nom prédéfini est l'année de l'evenement)
 	 * 
 	 *  
@@ -198,15 +199,25 @@ public class PanelAffichage extends JPanel {
 
 	/**ajoute l'evenement qui a été créé dans le formulaire dans le cardlayout
 	 * 
-	 * @param evt
+	 * @param evt l'evenement que l'on va ajouter
 	 */
 	public void ajoutPanel(Evenement evt) {
 		// ajoute dans le diapo l'eveneemnt en question
 
 		JPanel panelDiapo = new JPanel();
 
-		labelDescription = new JLabel("<html>" + "<h1>" + evt.getTitre() + "</h1>" + "<h2>-- Le : " + evt.getDate()
-				+ "</h2></br></br>" + "<i>" + evt.getDescription() + "</i>" + "</html>");
+		
+		//partie pour mettre les saut de lignes
+		String descripto = new String();
+		StringTokenizer st = new StringTokenizer(evt.getDescription());
+        while (st.hasMoreTokens()) {
+            if (st.countTokens() %12 == 0 && st.countTokens() != 0)
+                descripto += "<br/>";
+            descripto += " "+st.nextToken();        
+        }
+		
+		labelDescription = new JLabel("<html>" + "<h1>" + evt.getTitre() + "</h1>" + "<h4>-- Le : " + evt.getDate()
+				+ "</h4><br><br>" + "<i>" + descripto + "</i>" + "</html>");
 		panelDiapo.add(labelDescription);
 
 		for (int i = 0; i < intitules_images.length; i++) {
@@ -226,13 +237,13 @@ public class PanelAffichage extends JPanel {
 	
 	/** permet de modifier la position de la barre de parchemin en fonction de l'annee qui à été donnée.
 	 * 
-	 * <h6>tout n'est que question de pourcentage</h6>
+	 * <h1>tout n'est que question de pourcentage</h1>
 	 * 
-	 * @param annee
+	 * @param annee le nombre qui va decider la position du parchemin
 	 */
 	public void positionScroll(int annee) {
 		double pourcentage = (double) (annee - frise.getAnneeDebut()) / (frise.getAnneeFin() - frise.getAnneeDebut());
-		double coucou = pourcentage;
+		double coucou = 1 - pourcentage;
 		double coucou2 = 500 * coucou;
 
 		JScrollBar scrollBar = scroll.getHorizontalScrollBar();

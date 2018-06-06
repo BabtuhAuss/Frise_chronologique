@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/** Classe Date classique pour un evenement
+ * 
+ * @author Baptiste
+ *
+ */
 public class Date implements Serializable {
 
 	private static final long serialVersionUID = 1L;

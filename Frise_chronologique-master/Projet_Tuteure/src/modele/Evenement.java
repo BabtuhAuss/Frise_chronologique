@@ -2,14 +2,13 @@ package modele;
 
 import java.io.Serializable;
 
-/*
+/** Classe qui défini un évenement de la frise chronologique (avec une photo)
  * 
+ * @author Baptiste
+ *
  */
 public class Evenement implements Comparable<Evenement>, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Date date;
 	private int poid;

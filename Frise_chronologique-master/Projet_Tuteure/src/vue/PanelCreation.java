@@ -8,12 +8,11 @@ import controleur.Controleur;
 import modele.*;
 
 
-@SuppressWarnings("serial")
 /** Premier panel permettant la creation d'evenement dans la frise Chronologique
  * 
- * @author Baptiste
  *
  */
+@SuppressWarnings("serial")
 public class PanelCreation extends JPanel{
 	public final String NOM_BOUTON="+";
 	private JButton boutonAjout = new JButton(NOM_BOUTON);	
@@ -190,7 +189,7 @@ public class PanelCreation extends JPanel{
 
 	/** ajout de l'action du bouton "+" vers le controleur
 	 * 
-	 * @param le controleur
+	 * @param parC le controleur qui va gerer l'action
 	 */
 	public void enregistreEcouteur(Controleur parC){
 		boutonAjout.addActionListener(parC);

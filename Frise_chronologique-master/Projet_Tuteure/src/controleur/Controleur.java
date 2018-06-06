@@ -7,6 +7,11 @@ import java.awt.event.ActionListener;
 import vue.*;
 import modele.*;
 
+/** Classe qui va gerer l'action sur le panel Fils (ajout d'evenement, changer de diapo...)
+ * 
+ * @author Baptiste
+ *
+ */
 public class Controleur implements ActionListener {
 	
 	private Frise frise;
@@ -16,8 +21,10 @@ public class Controleur implements ActionListener {
 	/**
 	 * Constructeur
 	 * 
-	 * @param le formulaire de creation d'un evenement
-	 * @param la partie affichage du tableau et des diapos
+	 * @param parFrise la frise chronologique en cours
+	 * @param parCreation le formulaire de creation d'un evenement
+	 * @param parAffichage la partie affichage du tableau et des diapos
+	 * 
 	 */
 	public Controleur(Frise parFrise, PanelCreation parCreation, PanelAffichage parAffichage) {
 		frise = parFrise;
@@ -29,7 +36,7 @@ public class Controleur implements ActionListener {
 	}
 	/** methode qui va maintenir le systeme de gestion des actions sur les différents panel (ajout d'evenements)
 	 * 
-	 * @param l'action qui est ajouté dans les différents bouton sur les panels creation (+) et affichage (< >)
+	 * @param arg0 l'action qui est ajouté dans les différents bouton sur les panels creation (+) et affichage (la navigation avec les fleches)
 	 *
 	 */
 	public void actionPerformed(ActionEvent arg0) {

@@ -60,7 +60,7 @@ public class PanelFils extends JPanel implements ActionListener {
 	}
 
 	/** action qui est utilisé dans le menu (barre du haut)
-	 * </br>
+	 * <br>
 	 * permet de definir quel panel afficher. <strong> OU </strong> pour ouvrir ou creer une nouvelle frise
 	 * 
 	 */

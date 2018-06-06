@@ -16,7 +16,7 @@ public class FenetreMere extends JFrame {
 
 	/** constructeur principale
 	 * 
-	 * @param parTitre
+	 * @param parTitre le nom de la fenetre
 	 */
 	public FenetreMere(String parTitre) {
 		super(parTitre);

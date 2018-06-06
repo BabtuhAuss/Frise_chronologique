@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/** Classe qui permet de pouvoir lire un fichier ou d'ecrire dessus
+ * 
+ * @author Baptiste
+ *
+ */
 public class LectureEcriture {
 	
 	/** lis un fichier et on le cast en Frise dans le projet

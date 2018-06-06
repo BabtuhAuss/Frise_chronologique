@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+/** Classe qui va avoir tout les evenements rangés par année et triés par valeur de l'evenement
+ * @author Baptiste
+ *
+ */
 public class Frise implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -59,17 +63,17 @@ public class Frise implements Serializable {
 	}
 
 	/** methode qui permet <strong> d'ajouter dans le bon ordre </strong> l'evenement
-	 * dans la frise
+	 * dans la frise.
 	 * 
-	 * <ul><li>les evenements sont triés par ordre du poid</li>
+	 * <p> les evenements sont triés par ordre du poid </p>
 	 * 
-	 * <li> <i>si, dans le hashmap, l'annee de l'evenement n'est pas présente,</br>
-	 *  alors on en creer une autre</i></li></ul>
+	 *<p> <i>si, dans le hashmap, l'annee de l'evenement n'est pas présente<br>
+	 *  alors on en creer une autre</i></p>
 	 * 
 	 *
 	 * 
 	 * 
-	 * @param l'evenement <i>à ajouter</i>
+	 * @param parEvt qui est l'évenement <i>à ajouter</i>
 	 */
 	public void ajout(Evenement parEvt) {
 
@@ -96,7 +100,7 @@ public class Frise implements Serializable {
 
 	/** La methode transforme le hashmap en arrayList
 	 * 
-	 * @return la liste de touts les evenements sans clé, </br>
+	 * @return la liste de touts les evenements sans clé, <br>
 	 * utilisé dans le gestionnaire de cartes du panelAffichage
 	 */
 	public ArrayList<Evenement> getEvenements() {
@@ -117,7 +121,7 @@ public class Frise implements Serializable {
 
 	/** renvoie une collection d'evenement d'une annee
 	 * 
-	 * @param numAnnee
+	 * @param numAnnee l'année où l'on veut tout les evenements
 	 * @return tout les evenmeents de l'annee numAnnee
 	 */
 	public Collection<Evenement> getEvenementAnnee(int numAnnee) {
