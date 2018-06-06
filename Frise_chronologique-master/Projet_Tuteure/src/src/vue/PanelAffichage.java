@@ -73,17 +73,14 @@ public class PanelAffichage extends JPanel {
 
 		for (Evenement evt : frise.getEvenements()) {
 			JPanel panelDiapo = new JPanel();
-
+			ImageIcon img = new ImageIcon(evt.getNom_image());
 			labelDescription = new JLabel("<html>" + "<h1>" + evt.getTitre() + "</h1>" + "<h2>-- Le : " + evt.getDate()
 					+ "</h2></br></br>" + "<i>" + evt.getDescription() + "</i>" + "</html>");
 			panelDiapo.add(labelDescription);
 
-			for (int i = 0; i < intitules_images.length; i++) {
-				if (evt.getNom_image().compareTo(intitules_images[i]) == 0) {
-					labelImg = new JLabel(new ImageIcon(new ImageIcon("images" + File.separator + intitules_images[i])
-							.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
-				}
-			}
+			labelImg = new JLabel(new ImageIcon(img.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
+				
+			
 
 			panelDiapo.add(labelImg);
 			String s = evt.getTitre() + evt.getPoid() + evt.getDate() + evt.getDescription();
@@ -133,7 +130,7 @@ public class PanelAffichage extends JPanel {
 		panelTableFrise.add(scroll);
 
 		tableAnneeEvt.setRowHeight(100);
-		tableAnneeEvt.getTableHeader().setReorderingAllowed(false);
+
 		/* FIN DE LA TABLE */
 
 		// ajout des trois panels dans la classe PanelAffichage
@@ -186,13 +183,9 @@ public class PanelAffichage extends JPanel {
 		labelDescription = new JLabel("<html>" + "<h1>" + evt.getTitre() + "</h1>" + "<h2>-- Le : " + evt.getDate()
 				+ "</h2></br></br>" + "<i>" + evt.getDescription() + "</i>" + "</html>");
 		panelDiapo.add(labelDescription);
-
-		for (int i = 0; i < intitules_images.length; i++) {
-			if (evt.getNom_image().compareTo(intitules_images[i]) == 0) {
-				labelImg = new JLabel(new ImageIcon(new ImageIcon("images" + File.separator + intitules_images[i])
-						.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
-			}
-		}
+		ImageIcon img = new ImageIcon(evt.getNom_image());
+		labelImg = new JLabel(new ImageIcon(img.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
+		
 
 		panelDiapo.add(labelImg);
 		String s = evt.getTitre() + evt.getPoid() + evt.getDate() + evt.getDescription();
@@ -203,7 +196,7 @@ public class PanelAffichage extends JPanel {
 
 	public void positionScroll(int annee) {
 		double pourcentage = (double) (annee - frise.getAnneeDebut()) / (frise.getAnneeFin() - frise.getAnneeDebut());
-		double coucou = 1-pourcentage;
+		double coucou = pourcentage;
 		double coucou2 = 500 * coucou;
 
 		JScrollBar scrollBar = scroll.getHorizontalScrollBar();

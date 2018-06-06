@@ -41,6 +41,7 @@ public class PanelFils extends JPanel implements ActionListener {
 		} else
 			nouvelleFrise();
 
+		this.removeAll();
 		creation = new PanelCreation(maFrise);
 		affichage = new PanelAffichage(maFrise);
 
@@ -65,7 +66,7 @@ public class PanelFils extends JPanel implements ActionListener {
 		if (actionCommand.equals("?")) {
 			JOptionPane.showMessageDialog(null, "Ceci est fait par Castello Nicolas et Aussenac Baptiste");
 		}
-		if (actionCommand.equals("Ouvrire une frise")) {
+		if (actionCommand.equals("ouvrir une frise")) {
 
 			
 			
@@ -101,7 +102,7 @@ public class PanelFils extends JPanel implements ActionListener {
 			
 			
 			
-			/*String nomFrise = JOptionPane.showInputDialog(null, "Nom de la frise.ser:", "Ouvrire une frise",
+			/*String nomFrise = JOptionPane.showInputDialog(null, "Nom de la frise.ser:", "ouvrir une frise",
 					JOptionPane.QUESTION_MESSAGE);
 
 			File monFichier = new File("Frises" + File.separator + nomFrise);
@@ -117,6 +118,9 @@ public class PanelFils extends JPanel implements ActionListener {
 				}
 
 			}*/
+			
+			
+			
 			affichage = new PanelAffichage(maFrise);
 			creation = new PanelCreation(maFrise);
 			this.removeAll();

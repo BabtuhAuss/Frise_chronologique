@@ -32,9 +32,9 @@ public class FenetreMere extends JFrame {
 
 		JMenu menuFrise = new JMenu("Frise...");
 		menuFrise.addActionListener(contentPane);
-		JMenuItem itmMenuOuvrFrise = new JMenuItem("Ouvrire une frise");
+		JMenuItem itmMenuOuvrFrise = new JMenuItem("ouvrir une frise");
 		JMenuItem itmMenuCreeFrise = new JMenuItem("Nouvelle frise");
-		itmMenuOuvrFrise.setActionCommand("Ouvrire une frise");
+		itmMenuOuvrFrise.setActionCommand("ouvrir une frise");
 		itmMenuOuvrFrise.addActionListener(contentPane);
 		itmMenuCreeFrise.setActionCommand("Nouvelle frise");
 		itmMenuCreeFrise.addActionListener(contentPane);

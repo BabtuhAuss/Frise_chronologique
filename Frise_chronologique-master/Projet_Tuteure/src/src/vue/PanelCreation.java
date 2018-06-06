@@ -1,7 +1,5 @@
 package vue;
 import java.awt.*;
-import java.util.GregorianCalendar;
-import java.util.Calendar;
 import javax.swing.*;
 
 import controleur.Controleur;
@@ -10,16 +8,21 @@ import modele.*;
 
 @SuppressWarnings("serial")
 public class PanelCreation extends JPanel{
+	
 	public final String NOM_BOUTON="+";
+	public final String CHOISIR_PHOTO="Choisir";
+	
+	private JButton boutonPhoto = new JButton(CHOISIR_PHOTO);
 	private JButton boutonAjout = new JButton(NOM_BOUTON);	
 	private JTextField fieldTitre = new JTextField(14);
-	private JTextField fieldImage= new JTextField(14);
+	private JLabel labelFieldImage= new JLabel();
 	private JTextArea area = new JTextArea(10,15);
 	
 	private JComboBox choixPoids;
 	private JComboBox choixJour;
 	private JComboBox choixMois;
 	private JComboBox choixAnnee;
+	
 	
 	public PanelCreation(Frise frise){
 	
@@ -74,8 +77,8 @@ public class PanelCreation extends JPanel{
 		
 		contrainte.gridx=1 ; contrainte.gridy=2 ;
 		contrainte.gridwidth=2;
-		labelImage.setLabelFor(fieldImage);
-		add(fieldImage, contrainte);
+		labelImage.setLabelFor(labelFieldImage);
+		add(boutonPhoto, contrainte);
 		
 		contrainte.gridx=1 ; contrainte.gridy=0 ;
 		contrainte.gridwidth=2;
@@ -174,7 +177,7 @@ public class PanelCreation extends JPanel{
 
 	
 	public Evenement getEvenement(){
-		return new Evenement(getDate(),fieldTitre.getText(),area.getText(), Integer.parseInt((String)choixPoids.getSelectedItem()), fieldImage.getText());
+		return new Evenement(getDate(),fieldTitre.getText(),area.getText(), Integer.parseInt((String)choixPoids.getSelectedItem()), labelFieldImage.getText());
 	}
 	public Date getDate(){
 		Date date = new Date(Integer.parseInt((String)choixJour.getSelectedItem()),Integer.parseInt((String)choixMois.getSelectedItem()),Integer.parseInt((String)choixAnnee.getSelectedItem()));
@@ -182,18 +185,21 @@ public class PanelCreation extends JPanel{
 	}
 	
 	public void enregistreEcouteur(Controleur parC){
+		boutonPhoto.addActionListener(parC);
 		boutonAjout.addActionListener(parC);
 		
 	}
 
 	public void reset() {
 		fieldTitre.setText(new String());
-		fieldImage.setText(new String());
+		labelFieldImage.setText(new String());
 		area.setText(new String());
 		choixJour.setSelectedItem("1");
 		choixMois.setSelectedItem("1");
 		choixPoids.setSelectedItem("0");
 		fieldTitre.requestFocus();
 	}
-	
+	public JLabel getFieldImage() {
+		return labelFieldImage;
+	}
 }

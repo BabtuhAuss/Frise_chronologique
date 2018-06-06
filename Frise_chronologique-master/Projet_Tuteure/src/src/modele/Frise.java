@@ -90,6 +90,7 @@ public class Frise implements Serializable {
 		Date date = parEvt.getDate();
 		int annee_evt = date.getAnnee();
 
+		
 		if (Hash_evt.containsKey(annee_evt)) {
 			Hash_evt.get(annee_evt).add(parEvt);
 		}
