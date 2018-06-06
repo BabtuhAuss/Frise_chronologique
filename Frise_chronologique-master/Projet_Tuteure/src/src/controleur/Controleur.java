@@ -46,6 +46,7 @@ public class Controleur implements ActionListener {
 			}
 			panelAffichage.setFrise(frise);
 			panelAffichage.ajoutPanel(panelCreation.getEvenement());
+			panelCreation.reset();
 		} else if (arg0.getActionCommand().equals("<")) {
 			panelAffichage.evenement_precedent();
 		} else if (arg0.getActionCommand().equals(">")) {

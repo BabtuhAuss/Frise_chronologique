@@ -31,8 +31,6 @@ public class PanelFils extends JPanel implements ActionListener {
 		int taille_dossier = new File("Frises").listFiles().length;
 		if (taille_dossier != 0) {
 			try {
-				// File monFichier = new File("Frises" + File.separator+"frise1.ser");
-
 				maFrise = (Frise) LectureEcriture.lecture(new File("Frises").listFiles()[0]);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -42,7 +40,7 @@ public class PanelFils extends JPanel implements ActionListener {
 		} else
 			nouvelleFrise();
 
-		creation = new PanelCreation();
+		creation = new PanelCreation(maFrise);
 		affichage = new PanelAffichage(maFrise);
 
 		gestionnaireDeCartes = new CardLayout(5, 5);
@@ -84,7 +82,7 @@ public class PanelFils extends JPanel implements ActionListener {
 
 			}
 			affichage = new PanelAffichage(maFrise);
-			creation = new PanelCreation();
+			creation = new PanelCreation(maFrise);
 			this.removeAll();
 			this.add(creation, intitule_cartes[0]);
 
@@ -145,7 +143,7 @@ public class PanelFils extends JPanel implements ActionListener {
 			e1.printStackTrace();
 		}
 		affichage = new PanelAffichage(maFrise);
-		creation = new PanelCreation();
+		creation = new PanelCreation(maFrise);
 		this.removeAll();
 		this.add(creation, intitule_cartes[0]);
 

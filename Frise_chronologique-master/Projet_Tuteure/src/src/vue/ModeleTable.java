@@ -17,9 +17,9 @@ public class ModeleTable extends DefaultTableModel {
 		this.setColumnCount(duree_frise);
 		this.setRowCount(4);
 
-		val_annee = new String[duree_frise];
+		val_annee = new String[duree_frise+1];
 
-		for (int i = 0; parFrise.getAnneeDebut() + i < parFrise.getAnneeFin(); i++) {
+		for (int i = 0; parFrise.getAnneeDebut() + i < parFrise.getAnneeFin()+1; i++) {
 			if (i % periode == 0) {
 				val_annee[i] = "" + (parFrise.getAnneeDebut() + i);
 			} else {

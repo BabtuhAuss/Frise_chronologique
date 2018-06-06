@@ -14,25 +14,25 @@ public class PanelCreation extends JPanel{
 	private JButton boutonAjout = new JButton(NOM_BOUTON);	
 	private JTextField fieldTitre = new JTextField(14);
 	private JTextField fieldImage= new JTextField(14);
-	private JTextArea area = new JTextArea("",5,10);
+	private JTextArea area = new JTextArea(10,15);
 	
-	private JComboBox choixPoid;
+	private JComboBox choixPoids;
 	private JComboBox choixJour;
 	private JComboBox choixMois;
 	private JComboBox choixAnnee;
 	
-	public PanelCreation(){
+	public PanelCreation(Frise frise){
 	
 		//a enlever peutaitre
-		GregorianCalendar dateAuj = new GregorianCalendar ();
-		int anneeActuelle = dateAuj.get (Calendar.YEAR);
-		int totaleAnnee = (anneeActuelle - 1582)+1;
+		/*GregorianCalendar dateAuj = new GregorianCalendar ();
+		int anneeActuelle = dateAuj.get (Calendar.YEAR);*/
+		int totaleAnnee = frise.getAnneeFin()-frise.getAnneeDebut()+1;//(anneeActuelle - 1582)+1;
 		
-		JLabel labelPoid = new JLabel("Poid");
+		JLabel labelPoids = new JLabel("Poids");
 		String choix_jour[] = new String [31];
 		String choix_mois[] = new String [12];
 		String choix_annee[]= new String[totaleAnnee];
-		String choix_poid[] = {"0","1","2","3"};
+		String choix_poids[] = {"0","1","2","3"};
 		
 		for(int jour=1;jour<=31;jour++) {
 			choix_jour[jour-1]=""+jour;
@@ -42,13 +42,14 @@ public class PanelCreation extends JPanel{
 			choix_mois[mois-1]=""+mois;
 		}
 		
-		int annee=anneeActuelle;
+		//int annee=anneeActuelle;
+		int annee=frise.getAnneeFin();
 		for(int i=0;i<totaleAnnee;i++) {
 			choix_annee[i]=""+annee;
 			annee=annee-1;
 		}
 		
-		choixPoid = new JComboBox(choix_poid);
+		choixPoids = new JComboBox(choix_poids);
 		choixJour = new JComboBox(choix_jour);
 		choixMois = new JComboBox(choix_mois);
 		choixAnnee = new JComboBox(choix_annee);
@@ -141,13 +142,13 @@ public class PanelCreation extends JPanel{
 		
 		contrainte.gridx=0 ; contrainte.gridy=5 ;
 		contrainte.gridwidth=1;
-		labelPoid.setDisplayedMnemonic('P');
-		this.add(labelPoid, contrainte);
+		labelPoids.setDisplayedMnemonic('P');
+		this.add(labelPoids, contrainte);
 		
 		contrainte.gridx=1 ; contrainte.gridy=5 ;
 		contrainte.gridwidth=1;
-		labelPoid.setLabelFor(choixPoid);
-		this.add(choixPoid, contrainte);
+		labelPoids.setLabelFor(choixPoids);
+		this.add(choixPoids, contrainte);
 		
 
 		
@@ -156,12 +157,16 @@ public class PanelCreation extends JPanel{
 		labelDescription.setDisplayedMnemonic('D');
 		this.add(labelDescription, contrainte);
 		
+		
+		
+		
+		
 		contrainte.gridx=1 ; contrainte.gridy=6 ;
 		contrainte.gridwidth=2;
 		//contrainte.gridheight=2;
 		labelDescription.setLabelFor(area);
-		this.add(area, contrainte);
-		
+		JScrollPane scrollPane = new JScrollPane(area);
+		this.add(scrollPane,contrainte);		
 		
 			
 	}
@@ -169,29 +174,25 @@ public class PanelCreation extends JPanel{
 
 	
 	public Evenement getEvenement(){
-		return new Evenement(getDate(),fieldTitre.getText(),area.getText(), Integer.parseInt((String)choixPoid.getSelectedItem()), fieldImage.getText());
+		return new Evenement(getDate(),fieldTitre.getText(),area.getText(), Integer.parseInt((String)choixPoids.getSelectedItem()), fieldImage.getText());
 	}
 	public Date getDate(){
 		Date date = new Date(Integer.parseInt((String)choixJour.getSelectedItem()),Integer.parseInt((String)choixMois.getSelectedItem()),Integer.parseInt((String)choixAnnee.getSelectedItem()));
 		return	date;
 	}
 	
-	/*public void setDate(Date parDate){
-		dateFormulaire = parDate;
-		labelDate.setText(dateFormulaire.toString());
-	}*/
-	
 	public void enregistreEcouteur(Controleur parC){
 		boutonAjout.addActionListener(parC);
-		//this.reset();
+		
 	}
 
 	public void reset() {
 		fieldTitre.setText(new String());
 		fieldImage.setText(new String());
 		area.setText(new String());
-		
-		GregorianCalendar calendar = new GregorianCalendar();
+		choixJour.setSelectedItem("1");
+		choixMois.setSelectedItem("1");
+		choixPoids.setSelectedItem("0");
 		fieldTitre.requestFocus();
 	}
 	
