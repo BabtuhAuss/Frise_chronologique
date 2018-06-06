@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -64,8 +65,43 @@ public class PanelFils extends JPanel implements ActionListener {
 		if (actionCommand.equals("?")) {
 			JOptionPane.showMessageDialog(null, "Ceci est fait par Castello Nicolas et Aussenac Baptiste");
 		}
-		if (actionCommand.equals("Ouvrir une frise")) {
-			String nomFrise = JOptionPane.showInputDialog(null, "Nom de la frise.ser:", "Ouvrir une frise",
+		if (actionCommand.equals("Ouvrire une frise")) {
+
+			
+			
+			JFileChooser ouvrirFrise = new JFileChooser();
+			int resultatOuverture = ouvrirFrise.showOpenDialog(this); //Alors on demande à l'utilisateur d'ouvrir le fichier correspondant
+
+			if (resultatOuverture == JFileChooser.APPROVE_OPTION) { //Si l'utilisateur a sélectionné un fichier
+
+				File monFichier = ouvrirFrise.getSelectedFile(); //On récupère ce fichier
+				
+				boolean erreur = false;
+				
+				try {
+					Frise maFriseTmp = (Frise) LectureEcriture.lecture(monFichier); //On déserialise ce fichier
+					maFrise =  new Frise(maFriseTmp.toString(), maFriseTmp.getAnneeDebut(), maFriseTmp.getAnneeFin(), maFriseTmp.getPeriode(), maFriseTmp.getHashMapEvts(), ouvrirFrise.getSelectedFile().getPath()); //Et on le retourne d�serialis�
+				}
+				catch (FileNotFoundException e) { //Erreur si le fichier est inexistant
+					e.printStackTrace();
+					erreur = true;
+				} 
+				catch (IOException e) { //Erreur si le fichier est invalide
+					e.printStackTrace();
+					erreur = true;
+				}
+				finally {
+					if (erreur) //Si il y a eu une erreur alors on affiche un message 
+						JOptionPane.showMessageDialog(this, "Une erreur est survenue lors de l'ouverture du fichier !", "Erreur", JOptionPane.ERROR_MESSAGE);
+					else //Sinon on sort de la boucle pour continuer le programme
+						;
+				}
+
+			} //if
+			
+			
+			
+			/*String nomFrise = JOptionPane.showInputDialog(null, "Nom de la frise.ser:", "Ouvrire une frise",
 					JOptionPane.QUESTION_MESSAGE);
 
 			File monFichier = new File("Frises" + File.separator + nomFrise);
@@ -80,7 +116,7 @@ public class PanelFils extends JPanel implements ActionListener {
 					e.printStackTrace();
 				}
 
-			}
+			}*/
 			affichage = new PanelAffichage(maFrise);
 			creation = new PanelCreation(maFrise);
 			this.removeAll();
@@ -131,7 +167,7 @@ public class PanelFils extends JPanel implements ActionListener {
 				JOptionPane.QUESTION_MESSAGE);
 		String fin = JOptionPane.showInputDialog(null, "Annee de fin de la frise:", "Nouvelle frise",
 				JOptionPane.QUESTION_MESSAGE);
-		String intervale = JOptionPane.showInputDialog(null, "Periode:", "Nouvelle frise",
+		String intervale = JOptionPane.showInputDialog(null, "Annee a aficher:", "Nouvelle frise",
 				JOptionPane.QUESTION_MESSAGE);
 
 		maFrise = new Frise(nom, Integer.parseInt(debut), Integer.parseInt(fin), Integer.parseInt(intervale));

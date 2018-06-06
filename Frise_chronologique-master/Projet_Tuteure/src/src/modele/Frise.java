@@ -21,6 +21,8 @@ public class Frise implements Serializable {
 	int anneeDebut;
 	int anneeFin;
 
+	
+	private String cheminAcces;
 	// cette variable sert a afficher par période les années sur le modele table. si
 	// on a 5, alors, on écrira alors une année sur 5
 	int periode;
@@ -34,6 +36,15 @@ public class Frise implements Serializable {
 		// création d'une ArrayList pour pouvoir ecrire les dates dans la jtable
 		// aisement dans la JTABLE aisement
 		periode = parPeriode;
+	}
+
+	public Frise(String string, int anneeDebut2, int anneeFin2, int periode2, Object object, String path) {
+		Hash_evt = (HashMap <Integer, TreeSet<Evenement>>) object;
+		intituler = string;
+		anneeDebut = anneeDebut2;
+		anneeFin = anneeFin2;
+		periode = periode2;
+		cheminAcces = path;
 	}
 
 	/*-----------------------------ACCESSEURS-----------------------------*/
@@ -126,5 +137,12 @@ public class Frise implements Serializable {
 	public Collection<Evenement> getEvenementAnnee(int numAnnee) {
 		return Hash_evt.get(numAnnee);
 	}
+
+	public Object getHashMapEvts() {
+		// TODO Auto-generated method stub
+		return Hash_evt;
+	}
+
+	
 
 }
