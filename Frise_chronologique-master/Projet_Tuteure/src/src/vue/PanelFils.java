@@ -64,8 +64,8 @@ public class PanelFils extends JPanel implements ActionListener {
 		if (actionCommand.equals("?")) {
 			JOptionPane.showMessageDialog(null, "Ceci est fait par Castello Nicolas et Aussenac Baptiste");
 		}
-		if (actionCommand.equals("Ouvrire une frise")) {
-			String nomFrise = JOptionPane.showInputDialog(null, "Nom de la frise.ser:", "Ouvrire une frise",
+		if (actionCommand.equals("Ouvrir une frise")) {
+			String nomFrise = JOptionPane.showInputDialog(null, "Nom de la frise.ser:", "Ouvrir une frise",
 					JOptionPane.QUESTION_MESSAGE);
 
 			File monFichier = new File("Frises" + File.separator + nomFrise);
@@ -131,7 +131,7 @@ public class PanelFils extends JPanel implements ActionListener {
 				JOptionPane.QUESTION_MESSAGE);
 		String fin = JOptionPane.showInputDialog(null, "Annee de fin de la frise:", "Nouvelle frise",
 				JOptionPane.QUESTION_MESSAGE);
-		String intervale = JOptionPane.showInputDialog(null, "Annee a aficher:", "Nouvelle frise",
+		String intervale = JOptionPane.showInputDialog(null, "Periode:", "Nouvelle frise",
 				JOptionPane.QUESTION_MESSAGE);
 
 		maFrise = new Frise(nom, Integer.parseInt(debut), Integer.parseInt(fin), Integer.parseInt(intervale));

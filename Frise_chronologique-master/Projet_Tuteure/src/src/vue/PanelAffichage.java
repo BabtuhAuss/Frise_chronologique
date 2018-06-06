@@ -133,7 +133,7 @@ public class PanelAffichage extends JPanel {
 		panelTableFrise.add(scroll);
 
 		tableAnneeEvt.setRowHeight(100);
-
+		tableAnneeEvt.getTableHeader().setReorderingAllowed(false);
 		/* FIN DE LA TABLE */
 
 		// ajout des trois panels dans la classe PanelAffichage
@@ -203,7 +203,7 @@ public class PanelAffichage extends JPanel {
 
 	public void positionScroll(int annee) {
 		double pourcentage = (double) (annee - frise.getAnneeDebut()) / (frise.getAnneeFin() - frise.getAnneeDebut());
-		double coucou = pourcentage;
+		double coucou = 1-pourcentage;
 		double coucou2 = 500 * coucou;
 
 		JScrollBar scrollBar = scroll.getHorizontalScrollBar();
